@@ -2,12 +2,13 @@ import java.sql.*;
 
 public class database {
     static final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/";
+    static final String SQL_URL = "jdbc:mysql://localhost/";
     static final String DB_NAME = "farms";
     static final String USERNAME = "root";
     static final String PASSWORD = "";
 
-    public void databaseManager() {
+    //manage all database related function here
+    protected void databaseManager() {
         if (checkDriver() == true) {
             if (checkDatabaseExisted() == true) {
                 dropDatabase();
@@ -16,7 +17,8 @@ public class database {
         }
     }
 
-    protected boolean checkDriver() {
+    //check driver before any other function about database
+    private boolean checkDriver() {
         boolean result = false;
         try {
             System.out.println("Check driver...");
@@ -29,20 +31,21 @@ public class database {
         return result;
     }
 
-    protected boolean checkDatabaseExisted() {
+    //check database exists
+    private boolean checkDatabaseExisted() {
         boolean result = false;
         Connection conn = null;
         ResultSet rs = null;
         try {
-            conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            conn = DriverManager.getConnection(SQL_URL, USERNAME, PASSWORD);
             String dbName = DB_NAME;
             if (conn != null) {
-                System.out.println("Check if database '" + DB_NAME + "' existed...");
+                System.out.println("Checking if database '" + DB_NAME + "' exists...");
                 rs = conn.getMetaData().getCatalogs();
                 while (rs.next()) {
                     String catalogs = rs.getString(1);
                     if (dbName.equals(catalogs)) {
-                        System.out.println("The database '" + dbName + "' exists");
+                        System.out.println("The database '" + dbName + "' existed");
                         result = true;
                     }
                 }
@@ -70,33 +73,35 @@ public class database {
         return result;
     }
 
-    protected boolean createDatabase() {
+    //create database function
+    private boolean createDatabase() {
         boolean result = false;
-        // Open a connection
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        System.out.println("Creating database...");
+        try (Connection conn = DriverManager.getConnection(SQL_URL, USERNAME, PASSWORD);
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE DATABASE " + DB_NAME;
             stmt.executeUpdate(sql);
-            System.out.println("Database '" + DB_NAME + "' created successfully...");
+            System.out.println("Database '" + DB_NAME + "' created successfully");
             result = true;
         } catch (SQLException e) {
-            System.out.println("Database '" + DB_NAME + "' created failed...");
+            System.out.println("Database '" + DB_NAME + "' created failed");
             e.printStackTrace();
         }
         return result;
     }
 
-    protected boolean dropDatabase() {
+    //drop database function
+    private boolean dropDatabase() {
         boolean result = false;
-        // Open a connection
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        System.out.println("Droping database...");
+        try (Connection conn = DriverManager.getConnection(SQL_URL, USERNAME, PASSWORD);
                 Statement stmt = conn.createStatement();) {
             String sql = "DROP DATABASE " + DB_NAME;
             stmt.executeUpdate(sql);
-            System.out.println("Database '" + DB_NAME + "' dropped successfully...");
+            System.out.println("Database '" + DB_NAME + "' dropped successfully");
             result = true;
         } catch (SQLException e) {
-            System.out.println("Database '" + DB_NAME + "' dropped failed...");
+            System.out.println("Database '" + DB_NAME + "' dropped failed");
             e.printStackTrace();
         }
         return result;
