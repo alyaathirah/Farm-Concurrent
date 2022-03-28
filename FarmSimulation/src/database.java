@@ -7,7 +7,7 @@ public class database {
     static final String USERNAME = "root";
     static final String PASSWORD = "";
 
-    //manage all database related function here
+    // manage all database related function here
     protected void databaseManager() {
         if (checkDriver() == true) {
             if (checkDatabaseExisted() == true) {
@@ -17,7 +17,7 @@ public class database {
         }
     }
 
-    //check driver before any other function about database
+    // check driver before any other function about database
     private boolean checkDriver() {
         boolean result = false;
         try {
@@ -31,13 +31,23 @@ public class database {
         return result;
     }
 
-    //check database exists
+    //get connection
+    protected static Connection getConnection(String url, String username, String password) throws SQLException {
+        return DriverManager.getConnection(url, username, password);
+    }
+
+    //get sql connnection
+    protected Connection getSQLConnection() throws SQLException {
+        return getConnection(SQL_URL, USERNAME, PASSWORD);
+    }
+
+    // check database exists
     private boolean checkDatabaseExisted() {
         boolean result = false;
         Connection conn = null;
         ResultSet rs = null;
         try {
-            conn = DriverManager.getConnection(SQL_URL, USERNAME, PASSWORD);
+            conn = getSQLConnection();
             String dbName = DB_NAME;
             if (conn != null) {
                 System.out.println("Checking if database '" + DB_NAME + "' exists...");
@@ -73,11 +83,11 @@ public class database {
         return result;
     }
 
-    //create database function
+    // create database function
     private boolean createDatabase() {
         boolean result = false;
         System.out.println("Creating database...");
-        try (Connection conn = DriverManager.getConnection(SQL_URL, USERNAME, PASSWORD);
+        try (Connection conn = getSQLConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE DATABASE " + DB_NAME;
             stmt.executeUpdate(sql);
@@ -90,11 +100,11 @@ public class database {
         return result;
     }
 
-    //drop database function
+    // drop database function
     private boolean dropDatabase() {
         boolean result = false;
         System.out.println("Droping database...");
-        try (Connection conn = DriverManager.getConnection(SQL_URL, USERNAME, PASSWORD);
+        try (Connection conn = getSQLConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "DROP DATABASE " + DB_NAME;
             stmt.executeUpdate(sql);

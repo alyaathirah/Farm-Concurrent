@@ -15,11 +15,16 @@ public class table {
         createActivitiesTable();
     }
 
+    //
+    protected static Connection getDatabaseConnection() throws SQLException {
+        return database.getConnection(DB_URL, USERNAME, PASSWORD);
+    }
+
     // create table "plants"
     private boolean createPlantsTable() {
         boolean result = false;
         System.out.println("Creating table 'plants'...");
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE PLANTS " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
@@ -39,7 +44,7 @@ public class table {
     private boolean createFertilizersTable() {
         boolean result = false;
         System.out.println("Creating table 'fertilizers'...");
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE FERTILIZERS " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
@@ -59,7 +64,7 @@ public class table {
     private boolean createPesticidesTable() {
         boolean result = false;
         System.out.println("Creating table 'pesticides'...");
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE PESTICIDES " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
@@ -79,7 +84,7 @@ public class table {
     private boolean createFarmsTable() {
         boolean result = false;
         System.out.println("Creating table 'farms'...");
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE FARMS " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
@@ -100,7 +105,7 @@ public class table {
     private boolean createUsersTable() {
         boolean result = false;
         System.out.println("Creating table 'users'...");
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE USERS " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
@@ -124,7 +129,7 @@ public class table {
     private boolean createFarmablesTable() {
         boolean result = false;
         System.out.println("Creating table 'farmables'...");
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE FARMABLES " +
                     "(farm_id BIGINT UNSIGNED not NULL, " +
@@ -143,7 +148,7 @@ public class table {
     private boolean createActivitiesTable() {
         boolean result = false;
         System.out.println("Creating table 'activities'...");
-        try (Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE ACTIVITIES " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
