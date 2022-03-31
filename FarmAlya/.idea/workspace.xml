@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="429e24ab-c83c-4a79-86e8-7d2d7cddf09a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Activity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Farm.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Farm.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Farmer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Fertilizer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Fertilizer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Pesticide.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Pesticide.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Plant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Plant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
