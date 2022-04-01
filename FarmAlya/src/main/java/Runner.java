@@ -1,3 +1,7 @@
+import DB.database;
+import DB.seeder;
+import DB.table;
+
 import java.util.ArrayList;
 
 public class Runner {
@@ -6,19 +10,16 @@ public class Runner {
         ArrayList<Plant> plants = new ArrayList<>();
         ArrayList<Fertilizer> fertilizers = new ArrayList<>();
         ArrayList<Pesticide> pesticides = new ArrayList<>();
+        
 
-        for(int i=0; i<10; i++){
-            farms.add(new Farm());
-        }
-        for(int i=0; i<100; i++){
-            plants.add(new Plant());
-        }
-        for(int i=0; i<100; i++){
-            fertilizers.add(new Fertilizer());
-        }
-        for(int i=0; i<100; i++){
-            pesticides.add(new Pesticide());
-        }
+        //create database (adam)
+        database createDatabase = new database();
+        table createTables = new table();
+        seeder createSeeder = new seeder();
+        System.out.println("HELLO");
+        createDatabase.databaseManager();
+        createTables.tableManager();
+        createSeeder.seederManager();
 
     }
 }

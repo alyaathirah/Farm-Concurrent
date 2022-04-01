@@ -1,4 +1,4 @@
-package adam;
+package DB;
 
 import java.sql.*;
 
@@ -7,7 +7,7 @@ public class table {
     static final String USERNAME = database.USERNAME;
     static final String PASSWORD = database.PASSWORD;
 
-    protected void tableManager() {
+    public void tableManager() {
         createPlantsTable();
         createFertilizersTable();
         createPesticidesTable();

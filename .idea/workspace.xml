@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2fc4277-a4e4-4c5c-860e-8f8200ad79db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/database.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/seeder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/table.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/FarmAlya.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/database.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/seeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/seeder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/adam/table.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/table.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farm.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" afterDir="false" />
@@ -20,6 +18,10 @@
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Pesticide.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Pesticide.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Plant.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Plant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/adam/App.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/adam/database.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/adam/seeder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/adam/table.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,13 +47,13 @@
       <recent name="F:\Github\Farm-Concurrent\FarmAlya\src\main\java\adam" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Runner">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="adam.App" />
+      <option name="MAIN_CLASS_NAME" value="DB.App" />
       <module name="FarmAlya" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="adam.*" />
+          <option name="PATTERN" value="DB.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -59,8 +61,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Runner" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Runner" />
+      <module name="FarmAlya" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Runner" />
         <item itemvalue="Application.App" />
       </list>
     </recent_temporary>

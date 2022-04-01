@@ -1,10 +1,10 @@
-package adam;
+package DB;
 
 import java.sql.*;
 import com.github.javafaker.Faker;
 
 public class seeder {
-    protected void seederManager() {
+    public void seederManager() {
         seedPlants();
         seedFertilizers();
         seedPesticides();
@@ -119,6 +119,30 @@ public class seeder {
         try (Connection conn = table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             for (int i = 1; i < 6; i++) {
+                pstmt.setString(1, faker.name().fullName());
+                pstmt.setString(2, faker.internet().emailAddress());
+                pstmt.setString(3, faker.internet().password());
+                pstmt.setString(4, faker.phoneNumber().phoneNumber());
+                pstmt.execute();
+            }
+            conn.close();
+            System.out.println("Seed table 'users' successfully");
+        } catch (SQLException ex) {
+            System.out.println("Seed table 'users' failed");
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    // seed data into table 'users'
+    private boolean seedActivity() {
+        boolean result = false;
+        Faker faker = new Faker();
+        System.out.println("Seeding data into table 'users'...");
+        String SQL = "INSERT INTO users(name,email,password,phoneNumber) "
+                + "VALUES(?,?,?,?)";
+        try (Connection conn = table.getDatabaseConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            for (int i = 1; i < 2; i++) {
                 pstmt.setString(1, faker.name().fullName());
                 pstmt.setString(2, faker.internet().emailAddress());
                 pstmt.setString(3, faker.internet().password());

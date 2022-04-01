@@ -1,4 +1,4 @@
-package adam;
+package DB;
 
 import java.sql.*;
 
@@ -10,7 +10,7 @@ public class database {
     static final String PASSWORD = "";
 
     // manage all database related function here
-    protected void databaseManager() {
+    public void databaseManager() {
         if (checkDriver() == true) {
             if (checkDatabaseExisted() == true) {
                 dropDatabase();
