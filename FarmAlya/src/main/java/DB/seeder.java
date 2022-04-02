@@ -110,7 +110,6 @@ public class seeder {
                 if (rs.next()) {
                     key = rs.getLong(1);
                 }
-                System.out.println(key);
                 //generate relationship with plants, fertilizer, and pesticides
                 generateFarmables(key);
             }
@@ -126,15 +125,15 @@ public class seeder {
         //each types of farmables has random number of the types (1-5)
         //generate plants
         for(int i=1; i<=(rand.nextInt(5)+1); i++){
-            seedFarmables(farmid, "plant");
+            seedFarmable(farmid, "plant");
         }
         //generate fertilizers
         for(int i=1; i<=(rand.nextInt(5)+1); i++){
-            seedFarmables(farmid, "fertilizer");
+            seedFarmable(farmid, "fertilizer");
         }
         //generate pesticides
         for(int i=1; i<=(rand.nextInt(5)+1); i++){
-            seedFarmables(farmid, "pesticide");
+            seedFarmable(farmid, "pesticide");
         }
     }
 
@@ -147,7 +146,7 @@ public class seeder {
                 + "VALUES(?,?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            for (int i = 1; i < 6; i++) {
+            for (int i = 1; i < 101; i++) {
                 pstmt.setString(1, faker.name().fullName());
                 pstmt.setString(2, faker.internet().emailAddress());
                 pstmt.setString(3, faker.internet().password());
@@ -164,31 +163,29 @@ public class seeder {
     }
 
     // seed data into table 'activities' NOTDONE
-    private boolean seedActivity() {
+    private boolean seedActivity(String date, String farmid, String userid) {
         boolean result = false;
 
-        System.out.println("Seeding data into table 'farms'...");
-        String SQL = "INSERT INTO farms(name,address) "
+        System.out.println("Seeding data into table 'activities'...");
+        String SQL = "INSERT INTO activities(name,address) "
                 + "VALUES(?,?)";
         try (Connection conn = table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            String farmName = "";
             for (int i = 1; i < 11; i++) {
-                farmName = "farms" + i;
-                pstmt.setString(1, farmName);
+//                pstmt.setString(1, farmName);
                 pstmt.execute();
             }
             conn.close();
-            System.out.println("Seed table 'farms' successfully");
+            System.out.println("Seed table 'activities' successfully");
         } catch (SQLException ex) {
-            System.out.println("Seed table 'farms' failed");
+            System.out.println("Seed table 'activities' failed");
             System.out.println(ex.getMessage());
         }
         return result;
     }
 
     // seed data into table 'farmables' NOTDONE
-    private boolean seedFarmables(long farmid, String farmable_type) {
+    private boolean seedFarmable(long farmid, String farmable_type) {
         boolean result = false;
         int farmableLimit = 100;
         int randFarmableID = rand.nextInt(farmableLimit)+1;

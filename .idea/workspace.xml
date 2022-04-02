@@ -5,19 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f2fc4277-a4e4-4c5c-860e-8f8200ad79db" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/fetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/seeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/seeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Farm.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Fertilizer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Pesticide.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Plant.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farm.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Fertilizer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Pesticide.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Plant.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/FarmAlya-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/FarmAlya-1.0-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/database.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/seeder.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/seeder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/table.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/table.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/maven-archiver/pom.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +33,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="278M6y1RybAahdpo07H3AReGUcr" />
   <component name="ProjectViewState">

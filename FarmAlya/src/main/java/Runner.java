@@ -1,6 +1,7 @@
 import DB.database;
 import DB.seeder;
 import DB.table;
+import org.apache.commons.lang3.time.StopWatch;
 
 import java.util.ArrayList;
 
@@ -10,6 +11,8 @@ import java.util.ArrayList;
  */
 public class Runner {
     public static void main(String[] args){
+        StopWatch watch = new StopWatch();
+        watch.start();
         /**
          * Create database
          */
@@ -24,6 +27,7 @@ public class Runner {
 
         //Fetch users
 
-
+        watch.stop();
+        System.out.println(watch.getTime()+"ms");
     }
 }
