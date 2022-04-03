@@ -145,14 +145,26 @@ public class seeder {
         String SQL = "INSERT INTO users(name,email,password,phoneNumber) "
                 + "VALUES(?,?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
-             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+             PreparedStatement pstmt = conn.prepareStatement(SQL, new String[]{"id"})) {
             for (int i = 1; i < 101; i++) {
                 pstmt.setString(1, faker.name().fullName());
                 pstmt.setString(2, faker.internet().emailAddress());
                 pstmt.setString(3, faker.internet().password());
                 pstmt.setString(4, faker.phoneNumber().phoneNumber());
                 pstmt.execute();
+                //assign to farms
+                //return autoincrement id
+                long key = -1L;
+                ResultSet rs = pstmt.getGeneratedKeys();
+
+                if (rs.next()) {
+                    key = rs.getLong(1);
+                }
+                for(int j=1; j<=(rand.nextInt(5)+1); j++){
+                    assignFarm(key, "farmer");
+                }
             }
+
             conn.close();
             System.out.println("Seed table 'users' successfully");
         } catch (SQLException ex) {
@@ -184,7 +196,7 @@ public class seeder {
         return result;
     }
 
-    // seed data into table 'farmables' NOTDONE
+    // seed data into table 'farmables'
     private boolean seedFarmable(long farmid, String farmable_type) {
         boolean result = false;
         int farmableLimit = 100;
@@ -196,6 +208,29 @@ public class seeder {
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setString(1, String.valueOf(farmid));
             pstmt.setString(2, String.valueOf(randFarmableID));
+            pstmt.setString(3, farmable_type);
+            pstmt.execute();
+
+            conn.close();
+            System.out.println("Seed table 'farmables' successfully");
+        } catch (SQLException ex) {
+            System.out.println("Seed table 'farmables' failed");
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    // assign user/farmers to random farm
+    private boolean assignFarm(long userid, String farmable_type) {
+        boolean result = false;
+        int farmableLimit = 10;
+        int randFarmableID = rand.nextInt(farmableLimit)+1;
+        System.out.println("Seeding data into table 'farmables'...");
+        String SQL = "INSERT INTO farmables(farm_id,farmable_id,farmable_type) "
+                + "VALUES(?,?,?)";
+        try (Connection conn = table.getDatabaseConnection();
+             PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+            pstmt.setString(1, String.valueOf(randFarmableID));
+            pstmt.setString(2, String.valueOf(userid));
             pstmt.setString(3, farmable_type);
             pstmt.execute();
 

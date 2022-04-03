@@ -28,7 +28,7 @@ public class table {
         System.out.println("Creating table 'plants'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
-            String sql = "CREATE TABLE PLANTS " +
+            String sql = "CREATE TABLE plants " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
                     " name VARCHAR(255) not NULL, " +
                     " unitType VARCHAR(255) not NULL, " +
@@ -48,7 +48,7 @@ public class table {
         System.out.println("Creating table 'fertilizers'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
-            String sql = "CREATE TABLE FERTILIZERS " +
+            String sql = "CREATE TABLE fertilizers " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
                     " name VARCHAR(255) not NULL, " +
                     " unitType VARCHAR(255) not NULL, " +
@@ -68,7 +68,7 @@ public class table {
         System.out.println("Creating table 'pesticides'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
-            String sql = "CREATE TABLE PESTICIDES " +
+            String sql = "CREATE TABLE pesticides " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
                     " name VARCHAR(255) not NULL, " +
                     " unitType VARCHAR(255) not NULL, " +
@@ -88,7 +88,7 @@ public class table {
         System.out.println("Creating table 'farms'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
-            String sql = "CREATE TABLE FARMS " +
+            String sql = "CREATE TABLE farms " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
                     " name VARCHAR(255) not NULL, " +
                     " address VARCHAR(255) not NULL, " +
@@ -109,7 +109,7 @@ public class table {
         System.out.println("Creating table 'users'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
-            String sql = "CREATE TABLE USERS " +
+            String sql = "CREATE TABLE users " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
                     " name VARCHAR(255) not NULL, " +
                     " email VARCHAR(255) not NULL, " +
@@ -133,7 +133,7 @@ public class table {
         System.out.println("Creating table 'farmables'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
-            String sql = "CREATE TABLE FARMABLES " +
+            String sql = "CREATE TABLE farmables " +
                     "(farm_id BIGINT UNSIGNED not NULL, " +
                     " farmable_id BIGINT UNSIGNED not NULL, " +
                     " farmable_type VARCHAR(255) not NULL) ";
@@ -152,7 +152,7 @@ public class table {
         System.out.println("Creating table 'activities'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
-            String sql = "CREATE TABLE ACTIVITIES " +
+            String sql = "CREATE TABLE activities " +
                     "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
                     " farm_id BIGINT UNSIGNED not NULL, " +
                     " user_id BIGINT UNSIGNED not NULL, " +
