@@ -1,4 +1,5 @@
 import DB.database;
+import DB.fetcher;
 import DB.seeder;
 import DB.table;
 import org.apache.commons.lang3.time.StopWatch;
@@ -23,6 +24,9 @@ public class Runner {
         createTables.tableManager();
         createSeeder.seederManager();
 
+
+        fetcher createFetcher = new fetcher();
+        createFetcher.fetchFarmablesByFarm(1,"plant");
         //Create activities for each users
 
         //Fetch users

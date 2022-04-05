@@ -5,15 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5410ce7-e55a-49f2-9d66-468f84b8b97f" name="Changes" comment="Assign users to farm">
+      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Farm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/fetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/fetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Farmer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/database.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/fetcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/fetcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -86,6 +100,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Assign users to farm" />
