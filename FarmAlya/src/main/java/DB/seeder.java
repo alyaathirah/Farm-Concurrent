@@ -9,6 +9,7 @@ import com.github.javafaker.Faker;
 
 public class seeder {
     Random rand = new Random();
+    activity_counter counter = activity_counter.getInstance();
 
     public void seederManager() {
         seedPlants();
@@ -111,14 +112,14 @@ public class seeder {
                 pstmt.execute();
 
                 // return autoincrement id
-                long key = -1L;
-                ResultSet rs = pstmt.getGeneratedKeys();
-
-                if (rs.next()) {
-                    key = rs.getLong(1);
-                }
+//                long key = -1L;
+//                ResultSet rs = pstmt.getGeneratedKeys();
+//
+//                if (rs.next()) {
+//                    key = rs.getLong(1);
+//                }
                 // generate relationship with plants, fertilizer, and pesticides
-                generateFarmables(key);
+                generateFarmables(String.valueOf(i));
             }
             conn.close();
             System.out.println("Seed table 'farms' successfully");
@@ -129,7 +130,7 @@ public class seeder {
         return result;
     }
 
-    private void generateFarmables(long farmid) {
+    private void generateFarmables(String farmid) {
         // each types of farmables has random number of the types (1-5)
         // generate plants
         for (int i = 1; i <= (rand.nextInt(5) + 1); i++) {
@@ -163,14 +164,14 @@ public class seeder {
                 pstmt.execute();
                 // assign to farms
                 // return autoincrement id
-                long key = -1L;
-                ResultSet rs = pstmt.getGeneratedKeys();
-
-                if (rs.next()) {
-                    key = rs.getLong(1);
-                }
+//                String key = "";
+//                ResultSet rs = pstmt.getGeneratedKeys();
+//                if (rs.next()) {
+//                    key = rs.getString(1);
+//                }
+//                System.out.println(key);
                 for (int j = 1; j <= (rand.nextInt(5) + 1); j++) {
-                    assignFarm(key, "farmer");
+                    assignFarm(String.valueOf(i), "farmer");
                 }
             }
 
@@ -192,20 +193,20 @@ public class seeder {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         System.out.println("Seeding data into table 'activities'...");
-        String SQL = "INSERT INTO activities(date, action, type, unit, quantity, field, row, farm_id, user_id) "
-                + "VALUES(?,?,?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO activities(id, date, action, type, unit, quantity, field, row, farm_id, user_id) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
                 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-
-            pstmt.setString(1, formatter.format(date));
-            pstmt.setString(2, action);
-            pstmt.setString(3, type);
-            pstmt.setString(4, unit);
-            pstmt.setString(5, quantity);
-            pstmt.setString(6, field);
-            pstmt.setString(7, row);
-            pstmt.setString(8, farmId);
-            pstmt.setString(9, userId);
+            pstmt.setString(1, String.valueOf(counter.getCount()));
+            pstmt.setString(2, formatter.format(date));
+            pstmt.setString(3, action);
+            pstmt.setString(4, type);
+            pstmt.setString(5, unit);
+            pstmt.setString(6, quantity);
+            pstmt.setString(7, field);
+            pstmt.setString(8, row);
+            pstmt.setString(9, farmId);
+            pstmt.setString(10, userId);
 
             pstmt.execute();
 
@@ -219,7 +220,7 @@ public class seeder {
     }
 
     // seed data into table 'farmables'
-    private boolean seedFarmable(long farmid, String farmable_type) {
+    private boolean seedFarmable(String farmid, String farmable_type) {
         boolean result = false;
         int farmableLimit = 100;
         int randFarmableID = rand.nextInt(farmableLimit) + 1;
@@ -228,11 +229,10 @@ public class seeder {
                 + "VALUES(?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
                 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            pstmt.setString(1, String.valueOf(farmid));
+            pstmt.setString(1, farmid);
             pstmt.setString(2, String.valueOf(randFarmableID));
             pstmt.setString(3, farmable_type);
             pstmt.execute();
-
             conn.close();
             System.out.println("Seed table 'farmables' successfully");
         } catch (SQLException ex) {
@@ -243,7 +243,7 @@ public class seeder {
     }
 
     // assign user/farmers to random farm
-    private boolean assignFarm(long userid, String farmable_type) {
+    private boolean assignFarm(String userid, String farmable_type) {
         boolean result = false;
         int farmableLimit = 10;
         int randFarmableID = rand.nextInt(farmableLimit) + 1;
@@ -253,7 +253,7 @@ public class seeder {
         try (Connection conn = table.getDatabaseConnection();
                 PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             pstmt.setString(1, String.valueOf(randFarmableID));
-            pstmt.setString(2, String.valueOf(userid));
+            pstmt.setString(2, userid);
             pstmt.setString(3, farmable_type);
             pstmt.execute();
 
