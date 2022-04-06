@@ -1,6 +1,8 @@
 package DB;
 
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 
 import com.github.javafaker.Faker;
@@ -174,19 +176,32 @@ public class seeder {
         return result;
     }
 
-    // seed data into table 'activities' NOTDONE
-    private boolean seedActivity(String date, String farmid, String userid) {
+    // seed data into table 'activities'
+    public boolean seedActivity(String action, String type, String unit, String quantity, String field, String row, String farmId, String userId) {
         boolean result = false;
+        //Date
+        Date date = new Date(System.currentTimeMillis());
+        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         System.out.println("Seeding data into table 'activities'...");
-        String SQL = "INSERT INTO activities(name,address) "
-                + "VALUES(?,?)";
+        String SQL = "INSERT INTO activities(date, action, type, unit, quantity, field, row, farm_id, user_id) "
+                + "VALUES(?,?,?,?,?,?,?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
-            for (int i = 1; i < 11; i++) {
-//                pstmt.setString(1, farmName);
-                pstmt.execute();
-            }
+
+            pstmt.setString(1, formatter.format(date));
+            pstmt.setString(2, action);
+            pstmt.setString(3, type);
+            pstmt.setString(4, unit);
+            pstmt.setString(5, quantity);
+            pstmt.setString(6, field);
+            pstmt.setString(7, row);
+            pstmt.setString(8, farmId);
+            pstmt.setString(9, userId);
+
+
+            pstmt.execute();
+
             conn.close();
             System.out.println("Seed table 'activities' successfully");
         } catch (SQLException ex) {

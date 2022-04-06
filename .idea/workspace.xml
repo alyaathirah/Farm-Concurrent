@@ -5,15 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5410ce7-e55a-49f2-9d66-468f84b8b97f" name="Changes" comment="Assign users to farm">
-      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Farm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Activity.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/fetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/fetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/seeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/seeder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Farm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Farmer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/database.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/database.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/fetcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/fetcher.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/seeder.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/seeder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farm.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farm.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" afterDir="false" />
     </list>
@@ -36,6 +38,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
