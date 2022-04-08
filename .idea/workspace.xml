@@ -5,19 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c5410ce7-e55a-49f2-9d66-468f84b8b97f" name="Changes" comment="Assign users to farm">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/activity_counter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Activity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/fetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/fetcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/seeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/DB/seeder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Farm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Farmer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/src/main/java/Runner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Activity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/fetcher.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/fetcher.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/seeder.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/seeder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farm.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farm.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/DB/table.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/DB/table.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Farmer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" beforeDir="false" afterPath="$PROJECT_DIR$/FarmAlya/target/classes/Runner.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +52,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">

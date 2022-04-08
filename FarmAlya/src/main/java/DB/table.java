@@ -29,7 +29,7 @@ public class table {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE plants " +
-                    "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
+                    "(id VARCHAR(255) not NULL, " +
                     " name VARCHAR(255) not NULL, " +
                     " unitType VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ))";
@@ -49,7 +49,7 @@ public class table {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE fertilizers " +
-                    "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
+                    "(id VARCHAR(255) not NULL, " +
                     " name VARCHAR(255) not NULL, " +
                     " unitType VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ))";
@@ -69,7 +69,7 @@ public class table {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE pesticides " +
-                    "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
+                    "(id VARCHAR(255) not NULL, " +
                     " name VARCHAR(255) not NULL, " +
                     " unitType VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ))";
@@ -89,7 +89,7 @@ public class table {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE farms " +
-                    "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
+                    "(id VARCHAR(255) not NULL, " +
                     " name VARCHAR(255) not NULL, " +
                     " address VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ), " +
@@ -110,7 +110,7 @@ public class table {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE users " +
-                    "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
+                    "(id VARCHAR(255) not NULL, " +
                     " name VARCHAR(255) not NULL, " +
                     " email VARCHAR(255) not NULL, " +
                     " password VARCHAR(255) not NULL, " +
@@ -134,8 +134,8 @@ public class table {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE farmables " +
-                    "(farm_id BIGINT UNSIGNED not NULL, " +
-                    " farmable_id BIGINT UNSIGNED not NULL, " +
+                    "(farm_id VARCHAR(255) not NULL, " +
+                    " farmable_id VARCHAR(255) not NULL, " +
                     " farmable_type VARCHAR(255) not NULL) ";
             stmt.executeUpdate(sql);
             System.out.println("Created table 'farmables' successfully");
@@ -153,10 +153,10 @@ public class table {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE activities " +
-                    "(id BIGINT UNSIGNED not NULL AUTO_INCREMENT, " +
-                    " farm_id BIGINT UNSIGNED not NULL, " +
-                    " user_id BIGINT UNSIGNED not NULL, " +
-                    " date DATETIME not NULL, " +
+                    "(id VARCHAR(255) not NULL, " +
+                    " farm_id VARCHAR(255) not NULL, " +
+                    " user_id VARCHAR(255) not NULL, " +
+                    " date VARCHAR(255) not NULL, " +
                     " action VARCHAR(255) not NULL, " +
                     " type VARCHAR(255) not NULL, " +
                     " unit VARCHAR(255) not NULL, " +

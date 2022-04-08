@@ -11,7 +11,7 @@ public class Farmer implements Runnable{
     Farm[] FarmObjects;
 
     fetcher Fetcher = new fetcher();
-    int activityNum = 10;
+    int activityNum = 100;
     //types
     String[] types = {"plant", "fertilizer", "pesticides"};
     //then subtypes based on farm's farmables list
