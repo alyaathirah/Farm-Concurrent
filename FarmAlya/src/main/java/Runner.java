@@ -49,6 +49,10 @@ public class Runner {
 //            }
 //        }
         //Create activity
+
+        //input log target
+        InputLog inputlog = new InputLog();
+        inputlog.inputlog();
         watch.stop();
         System.out.println(watch.getTime()+"ms");
     }

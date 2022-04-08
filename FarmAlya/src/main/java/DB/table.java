@@ -18,7 +18,7 @@ public class table {
     }
 
     //
-    protected static Connection getDatabaseConnection() throws SQLException {
+    public static Connection getDatabaseConnection() throws SQLException {
         return database.getConnection(DB_URL, USERNAME, PASSWORD);
     }
 
