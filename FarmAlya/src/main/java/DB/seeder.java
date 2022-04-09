@@ -3,7 +3,9 @@ package DB;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import com.github.javafaker.Faker;
 
@@ -189,7 +191,9 @@ public class seeder {
             String farmId, String userId) {
         boolean result = false;
         // Date
-        Date date = new Date(System.currentTimeMillis());
+//        Date date = new Date(System.currentTimeMillis());
+        Faker faker = new Faker();
+        Date date = faker.date().future(rand.nextInt(3)+1, TimeUnit.DAYS);
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
         System.out.println("Seeding data into table 'activities'...");
