@@ -6,7 +6,7 @@ import java.util.Random;
 public class Farm {
     Random rand = new Random();
     int farmid;
-    String[] actions = {"empty","sowing","pesticide","fertilizing","harvest","sales"}; //status {0,1,2,3,4,5}
+    String[] actions = {"sowing","pesticide","fertilizing","harvest","sales"}; //status {0,1,2,3,4}
     int[] plants;
     int[] fertilizer;
     int[] pesticides;
@@ -45,7 +45,7 @@ public class Farm {
         //check status
         int tempStatus = field[tempField][tempRow];
         //change status
-        if(tempStatus>=5)
+        if(tempStatus>=4)
             tempStatus = 0; //set to zero after sales
         else {
             tempStatus++;
@@ -58,12 +58,12 @@ public class Farm {
 
         //get type from field number | if new status pesticide/fertilizer type=pesticide/fertilizer's brand
         String tempType = "";
-        if(tempStatus==1 || tempStatus==4 ||tempStatus==5) {//plant related
+        if(tempStatus==0 || tempStatus==3 ||tempStatus==4) {//plant related
             tempType = Fetcher.fetchPlantByID(plants[tempField]);
         }
-        else if(tempStatus==2)
+        else if(tempStatus==1)
             tempType = Fetcher.fetchPesticideByID(pesticides[rand.nextInt(pesticides.length)]);
-        else if(tempStatus==3)
+        else if(tempStatus==2)
             tempType = Fetcher.fetchFertilizerByID(fertilizer[rand.nextInt(fertilizer.length)]);
         else
             tempType = "none";

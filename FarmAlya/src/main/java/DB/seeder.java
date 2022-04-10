@@ -24,7 +24,7 @@ public class seeder {
     // seed data into table 'plants'
     private boolean seedPlants() {
         boolean result = false;
-        System.out.println("Seeding data into table 'plants'...");
+//        System.out.println("Seeding data into table 'plants'...");
         String SQL = "INSERT INTO plants(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -38,7 +38,7 @@ public class seeder {
                 pstmt.execute();
             }
             conn.close();
-            System.out.println("Seed table 'plants' successfully");
+//            System.out.println("Seed table 'plants' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'plants' failed");
             System.out.println(ex.getMessage());
@@ -49,7 +49,7 @@ public class seeder {
     // seed data into table 'fertilizers'
     private boolean seedFertilizers() {
         boolean result = false;
-        System.out.println("Seeding data into table 'fertilizers'...");
+//        System.out.println("Seeding data into table 'fertilizers'...");
         String SQL = "INSERT INTO fertilizers(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -63,7 +63,7 @@ public class seeder {
                 pstmt.execute();
             }
             conn.close();
-            System.out.println("Seed table 'fertilizers' successfully");
+//            System.out.println("Seed table 'fertilizers' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'fertilizers' failed");
             System.out.println(ex.getMessage());
@@ -74,7 +74,7 @@ public class seeder {
     // seed data into table 'pesticides'
     private boolean seedPesticides() {
         boolean result = false;
-        System.out.println("Seeding data into table 'pesticides'...");
+//        System.out.println("Seeding data into table 'pesticides'...");
         String SQL = "INSERT INTO pesticides(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -88,7 +88,7 @@ public class seeder {
                 pstmt.execute();
             }
             conn.close();
-            System.out.println("Seed table 'pesticides' successfully");
+//            System.out.println("Seed table 'pesticides' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'pesticides' failed");
             System.out.println(ex.getMessage());
@@ -100,7 +100,7 @@ public class seeder {
     private boolean seedFarms() {
         boolean result = false;
         Faker faker = new Faker();
-        System.out.println("Seeding data into table 'farms'...");
+//        System.out.println("Seeding data into table 'farms'...");
         String SQL = "INSERT INTO farms(id,name,address) "
                 + "VALUES(?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -124,7 +124,7 @@ public class seeder {
                 generateFarmables(String.valueOf(i));
             }
             conn.close();
-            System.out.println("Seed table 'farms' successfully");
+//            System.out.println("Seed table 'farms' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'farms' failed");
             System.out.println(ex.getMessage());
@@ -152,7 +152,7 @@ public class seeder {
     private boolean seedUsers() {
         boolean result = false;
         Faker faker = new Faker();
-        System.out.println("Seeding data into table 'users'...");
+//        System.out.println("Seeding data into table 'users'...");
         String SQL = "INSERT INTO users(id,name,email,password,phoneNumber) "
                 + "VALUES(?,?,?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -178,7 +178,7 @@ public class seeder {
             }
 
             conn.close();
-            System.out.println("Seed table 'users' successfully");
+//            System.out.println("Seed table 'users' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'users' failed");
             System.out.println(ex.getMessage());
@@ -196,7 +196,7 @@ public class seeder {
         Date date = faker.date().future(rand.nextInt(3)+1, TimeUnit.DAYS);
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
-        System.out.println("Seeding data into table 'activities'...");
+//        System.out.println("Seeding data into table 'activities'...");
         String SQL = "INSERT INTO activities(id, date, action, type, unit, quantity, field, row, farm_id, user_id) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -215,7 +215,7 @@ public class seeder {
             pstmt.execute();
 
             conn.close();
-            System.out.println("Seed table 'activities' successfully");
+//            System.out.println("Seed table 'activities' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'activities' failed");
             System.out.println(ex.getMessage());
@@ -228,7 +228,7 @@ public class seeder {
         boolean result = false;
         int farmableLimit = 100;
         int randFarmableID = rand.nextInt(farmableLimit) + 1;
-        System.out.println("Seeding data into table 'farmables'...");
+//        System.out.println("Seeding data into table 'farmables'...");
         String SQL = "INSERT INTO farmables(farm_id,farmable_id,farmable_type) "
                 + "VALUES(?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -238,7 +238,7 @@ public class seeder {
             pstmt.setString(3, farmable_type);
             pstmt.execute();
             conn.close();
-            System.out.println("Seed table 'farmables' successfully");
+//            System.out.println("Seed table 'farmables' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'farmables' failed");
             System.out.println(ex.getMessage());
@@ -251,7 +251,7 @@ public class seeder {
         boolean result = false;
         int farmableLimit = 10;
         int randFarmableID = rand.nextInt(farmableLimit) + 1;
-        System.out.println("Seeding data into table 'farmables'...");
+//        System.out.println("Seeding data into table 'farmables'...");
         String SQL = "INSERT INTO farmables(farm_id,farmable_id,farmable_type) "
                 + "VALUES(?,?,?)";
         try (Connection conn = table.getDatabaseConnection();
@@ -262,7 +262,7 @@ public class seeder {
             pstmt.execute();
 
             conn.close();
-            System.out.println("Seed table 'farmables' successfully");
+//            System.out.println("Seed table 'farmables' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'farmables' failed");
             System.out.println(ex.getMessage());
