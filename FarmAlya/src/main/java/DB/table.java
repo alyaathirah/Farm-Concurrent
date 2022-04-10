@@ -25,7 +25,7 @@ public class table {
     // create table "plants"
     private boolean createPlantsTable() {
         boolean result = false;
-        System.out.println("Creating table 'plants'...");
+        // System.out.println("Creating table 'plants'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE plants " +
@@ -34,7 +34,7 @@ public class table {
                     " unitType VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
-            System.out.println("Created table 'plants' successfully");
+            // System.out.println("Created table 'plants' successfully");
         } catch (SQLException e) {
             System.out.println("Created table 'plants' failed");
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class table {
     // create table "fertilizers"
     private boolean createFertilizersTable() {
         boolean result = false;
-        System.out.println("Creating table 'fertilizers'...");
+        // System.out.println("Creating table 'fertilizers'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE fertilizers " +
@@ -54,7 +54,7 @@ public class table {
                     " unitType VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
-            System.out.println("Created table 'fertilizers' successfully");
+            // System.out.println("Created table 'fertilizers' successfully");
         } catch (SQLException e) {
             System.out.println("Created table 'fertilizers' failed");
             e.printStackTrace();
@@ -65,7 +65,7 @@ public class table {
     // create table "pesticides"
     private boolean createPesticidesTable() {
         boolean result = false;
-        System.out.println("Creating table 'pesticides'...");
+        // System.out.println("Creating table 'pesticides'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE pesticides " +
@@ -74,7 +74,7 @@ public class table {
                     " unitType VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
-            System.out.println("Created table 'pesticides' successfully");
+            // System.out.println("Created table 'pesticides' successfully");
         } catch (SQLException e) {
             System.out.println("Created table 'pesticides' failed");
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class table {
     // create table "farms"
     private boolean createFarmsTable() {
         boolean result = false;
-        System.out.println("Creating table 'farms'...");
+        // System.out.println("Creating table 'farms'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE farms " +
@@ -95,7 +95,7 @@ public class table {
                     " PRIMARY KEY ( id ), " +
                     " UNIQUE (address))";
             stmt.executeUpdate(sql);
-            System.out.println("Created table 'farms' successfully");
+            // System.out.println("Created table 'farms' successfully");
         } catch (SQLException e) {
             System.out.println("Created table 'farms' failed");
             e.printStackTrace();
@@ -106,7 +106,7 @@ public class table {
     // create table "users"
     private boolean createUsersTable() {
         boolean result = false;
-        System.out.println("Creating table 'users'...");
+        // System.out.println("Creating table 'users'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE users " +
@@ -119,7 +119,7 @@ public class table {
                     " UNIQUE (email)," +
                     " UNIQUE (phoneNumber))";
             stmt.executeUpdate(sql);
-            System.out.println("Created table 'users' successfully");
+            // System.out.println("Created table 'users' successfully");
         } catch (SQLException e) {
             System.out.println("Created table 'users' failed");
             e.printStackTrace();
@@ -130,7 +130,7 @@ public class table {
     // create polymorphic table "farmables"
     private boolean createFarmablesTable() {
         boolean result = false;
-        System.out.println("Creating table 'farmables'...");
+        // System.out.println("Creating table 'farmables'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE farmables " +
@@ -138,7 +138,7 @@ public class table {
                     " farmable_id VARCHAR(255) not NULL, " +
                     " farmable_type VARCHAR(255) not NULL) ";
             stmt.executeUpdate(sql);
-            System.out.println("Created table 'farmables' successfully");
+            // System.out.println("Created table 'farmables' successfully");
         } catch (SQLException e) {
             System.out.println("Created table 'farmables' failed");
             e.printStackTrace();
@@ -149,7 +149,7 @@ public class table {
     // create table "activities"
     private boolean createActivitiesTable() {
         boolean result = false;
-        System.out.println("Creating table 'activities'...");
+        // System.out.println("Creating table 'activities'...");
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE activities " +
@@ -167,7 +167,7 @@ public class table {
                     " FOREIGN KEY (farm_id) REFERENCES farms(id)," +
                     " FOREIGN KEY (user_id) REFERENCES users(id))";
             stmt.executeUpdate(sql);
-            System.out.println("Created table 'activities' successfully");
+            // System.out.println("Created table 'activities' successfully");
         } catch (SQLException e) {
             System.out.println("Created table 'activities' failed");
             e.printStackTrace();

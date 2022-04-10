@@ -23,7 +23,7 @@ public class database {
     private boolean checkDriver() {
         boolean result = false;
         try {
-            System.out.println("Check driver...");
+            // System.out.println("Check driver...");
             Class.forName(DRIVER);
             result = true;
         } catch (ClassNotFoundException ex) {
@@ -52,7 +52,7 @@ public class database {
             conn = getSQLConnection();
             String dbName = DB_NAME;
             if (conn != null) {
-                System.out.println("Checking if database '" + DB_NAME + "' exists...");
+                // System.out.println("Checking if database '" + DB_NAME + "' exists...");
                 rs = conn.getMetaData().getCatalogs();
                 while (rs.next()) {
                     String catalogs = rs.getString(1);
@@ -88,12 +88,12 @@ public class database {
     // create database function
     private boolean createDatabase() {
         boolean result = false;
-        System.out.println("Creating database...");
+        // System.out.println("Creating database...");
         try (Connection conn = getSQLConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE DATABASE " + DB_NAME;
             stmt.executeUpdate(sql);
-            System.out.println("Database '" + DB_NAME + "' created successfully");
+            // System.out.println("Database '" + DB_NAME + "' created successfully");
             result = true;
         } catch (SQLException e) {
             System.out.println("Database '" + DB_NAME + "' created failed");
@@ -105,12 +105,12 @@ public class database {
     // drop database function
     private boolean dropDatabase() {
         boolean result = false;
-        System.out.println("Droping database...");
+        // System.out.println("Droping database...");
         try (Connection conn = getSQLConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "DROP DATABASE " + DB_NAME;
             stmt.executeUpdate(sql);
-            System.out.println("Database '" + DB_NAME + "' dropped successfully");
+            // System.out.println("Database '" + DB_NAME + "' dropped successfully");
             result = true;
         } catch (SQLException e) {
             System.out.println("Database '" + DB_NAME + "' dropped failed");
