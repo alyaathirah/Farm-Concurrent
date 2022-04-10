@@ -11,7 +11,7 @@ public class InputLog {
         Scanner input = new Scanner(System.in);  // Create a Scanner object
         System.out.println(" ");
         System.out.println("Which targets of activity log (input number 0 or 1 or 2 or 3 or 4 or 5) :");
-        System.out.println(" 0 = Exit System \n 1 = Activity logs for a target farm \n 2 = Activity logs for a target farmer \n 3 = Activity logs for a target farm and plant / fertilizer / pesticide \n 4 = Activity logs for a target farm and plant / fertilizer / pesticide between date A and date B (inclusive) ");
+        System.out.println(" 0 = Exit System \n 1 = Activity logs for a target farm \n 2 = Activity logs for a target farmer \n 3 = Activity logs for a target farm and plant / fertilizer / pesticide \n 4 = Activity logs for a target farm and plant / fertilizer / pesticide between date A and date B (inclusive) \n 5 = Summarized logs by plants, fertilizers and pesticides for a target farm and plant / fertilizer / pesticide between date A and date B (inclusive) for selected field and row number.");
         System.out.print("Input : ");
         int select = input.nextInt();
 
@@ -27,6 +27,9 @@ public class InputLog {
         } else if (select == 4) {
             target4();
             inputlog();
+        }else if (select == 5) {
+            target5();
+            inputlog();    
         } else if (select == 0) {
             System.out.println("Thank You . Good Bye .");
         } else{
@@ -183,5 +186,53 @@ public class InputLog {
             System.out.println(ex.getMessage());
         }
     }
+   public void target5(){
+    Scanner input = new Scanner(System.in);
+    Scanner input2 = new Scanner(System.in);
+    Scanner input3 = new Scanner(System.in);
+    Scanner input4 = new Scanner(System.in);
+    Scanner input5 = new Scanner(System.in);
+    Scanner input6 = new Scanner(System.in);
+    System.out.println("Which farm (input number 1 to 10) : ");
+    //System.out.println("1 = farm1 \n 2 = farm2 \n 3 = farm3 \n 4 = farm4 \n 5 = farm5 \n 6 = farm6 \n 7 = farm7 \n 8 = farm8 \n 9 = farm9 \n 10 = farm10" );
+    System.out.print("Input : ");
+    int select = input.nextInt();//farm
+    System.out.println("Input plant name : ");
+    System.out.print("Input : ");
+    String select2 = input2.nextLine();//plant
+    System.out.println("Input start date : ");
+    System.out.print("Input : ");
+    String select3 = input3.nextLine();//start date
+    System.out.println("Input end date : ");
+    System.out.print("Input : ");
+    String select4 = input4.nextLine();//end date
+    System.out.print("Input field: ");
+    int select5 = input5.nextInt();//field
+    System.out.print("Input row: ");
+    int select6 = input6.nextInt();//row
 
+    String SQL = "SELECT * FROM `activities` WHERE `farm_id` LIKE " + "'" + select  + "'" + " AND `type` LIKE " + "'" + select2  + "'" + "AND `field` = " + select5 + " AND `row` = "+ select6 + " AND `date` between " + "'" + select3  + "'" + " AND " + "'" + select4  + "'";
+    String str = "";
+    try (Connection conn = table.getDatabaseConnection();
+         PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        boolean results = pstmt.execute(SQL);
+        //Loop through the available result sets.
+        do {
+            if(results) {
+                ResultSet rs = pstmt.getResultSet();
+                //Show data from the result set.
+                while (rs.next()) {
+                    str = (rs.getString("action")+" "+rs.getString("type")+" Field "+rs.getString("field")+" Row "+rs.getString("row")+" "+rs.getString("quantity")+rs.getString("unit")+" ");
+                    System.out.println(str);
+                }
+                rs.close();
+            }
+            results = pstmt.getMoreResults();
+        } while(results);
+    }
+    catch (SQLException ex) {
+        System.out.println("Fetch failed");
+        System.out.println(ex.getMessage());
+    }
+}
 }
