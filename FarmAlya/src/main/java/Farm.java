@@ -1,6 +1,5 @@
 import DB.fetcher;
 import DB.seeder;
-
 import java.util.Random;
 
 public class Farm {

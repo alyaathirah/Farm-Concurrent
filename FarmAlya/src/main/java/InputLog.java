@@ -1,4 +1,4 @@
-import DB.fetcher;
+
 import DB.table;
 
 import java.sql.*;
@@ -36,6 +36,7 @@ public class InputLog {
             System.out.println("Wrong Input");
             inputlog();
         }
+        input.close();
     }
 
 

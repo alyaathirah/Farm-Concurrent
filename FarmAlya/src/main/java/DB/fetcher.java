@@ -1,11 +1,6 @@
 package DB;
-
-import com.github.javafaker.Faker;
-
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class fetcher {
     //fetches all users in db
@@ -15,7 +10,7 @@ public class fetcher {
 
     public String[] fetchFarmsByUser(int userID){
         ArrayList<String> tempArray = new ArrayList<String>();
-        boolean result = false;
+        // boolean result = false;
         String SQL = "SELECT farm_id FROM farmables WHERE farmable_type='farmer' AND farmable_id="+userID;
         try (Connection conn = table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
@@ -34,6 +29,7 @@ public class fetcher {
                 results = pstmt.getMoreResults();
             } while(results);
             pstmt.close();
+            conn.close();
 
         }
         catch (SQLException ex) {
@@ -46,7 +42,7 @@ public class fetcher {
     }
     public int[] fetchFarmablesByFarm(int farmID, String farmableType){ //types:farmer, plant, fertilizer, pesticide
         ArrayList<Integer> tempArray = new ArrayList<>();
-        boolean result = false;
+        // boolean result = false;
         String SQL = "SELECT farmable_id,farmable_type FROM farmables WHERE farm_id="+farmID+" AND farmable_type='"+farmableType+"'";
         try (Connection conn = table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
@@ -65,7 +61,7 @@ public class fetcher {
                 results = pstmt.getMoreResults();
             } while(results);
             pstmt.close();
-
+            conn.close();
         }
         catch (SQLException ex) {
             System.out.println("Fetch failed");
@@ -98,6 +94,8 @@ public class fetcher {
                 }
                 results = pstmt.getMoreResults();
             } while(results);
+            pstmt.close();
+            conn.close();
         }
         catch (SQLException ex) {
             System.out.println("Fetch failed");
@@ -124,6 +122,8 @@ public class fetcher {
                 }
                 results = pstmt.getMoreResults();
             } while(results);
+            pstmt.close();
+            conn.close();
         }
         catch (SQLException ex) {
             System.out.println("Fetch failed");
@@ -150,6 +150,8 @@ public class fetcher {
                 }
                 results = pstmt.getMoreResults();
             } while(results);
+            pstmt.close();
+            conn.close();
         }
         catch (SQLException ex) {
             System.out.println("Fetch failed");

@@ -1,10 +1,8 @@
 import DB.database;
-import DB.fetcher;
 import DB.seeder;
 import DB.table;
 import org.apache.commons.lang3.time.StopWatch;
 
-import java.util.ArrayList;
 
 /**
  * TODO

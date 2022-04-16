@@ -35,6 +35,7 @@ public class table {
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
             // System.out.println("Created table 'plants' successfully");
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Created table 'plants' failed");
             e.printStackTrace();
@@ -55,6 +56,7 @@ public class table {
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
             // System.out.println("Created table 'fertilizers' successfully");
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Created table 'fertilizers' failed");
             e.printStackTrace();
@@ -75,6 +77,7 @@ public class table {
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
             // System.out.println("Created table 'pesticides' successfully");
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Created table 'pesticides' failed");
             e.printStackTrace();
@@ -96,6 +99,7 @@ public class table {
                     " UNIQUE (address))";
             stmt.executeUpdate(sql);
             // System.out.println("Created table 'farms' successfully");
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Created table 'farms' failed");
             e.printStackTrace();
@@ -120,6 +124,7 @@ public class table {
                     " UNIQUE (phoneNumber))";
             stmt.executeUpdate(sql);
             // System.out.println("Created table 'users' successfully");
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Created table 'users' failed");
             e.printStackTrace();
@@ -168,6 +173,7 @@ public class table {
                     " FOREIGN KEY (user_id) REFERENCES users(id))";
             stmt.executeUpdate(sql);
             // System.out.println("Created table 'activities' successfully");
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Created table 'activities' failed");
             e.printStackTrace();

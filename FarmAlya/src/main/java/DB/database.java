@@ -1,6 +1,13 @@
 package DB;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+// import java.sql.*;
 
 public class database {
     static final String DRIVER = "com.mysql.cj.jdbc.Driver";
@@ -95,6 +102,7 @@ public class database {
             stmt.executeUpdate(sql);
             // System.out.println("Database '" + DB_NAME + "' created successfully");
             result = true;
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Database '" + DB_NAME + "' created failed");
             e.printStackTrace();
@@ -112,6 +120,7 @@ public class database {
             stmt.executeUpdate(sql);
             // System.out.println("Database '" + DB_NAME + "' dropped successfully");
             result = true;
+            conn.close();
         } catch (SQLException e) {
             System.out.println("Database '" + DB_NAME + "' dropped failed");
             e.printStackTrace();
