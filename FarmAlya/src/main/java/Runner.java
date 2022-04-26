@@ -1,10 +1,8 @@
 import DB.database;
-import DB.fetcher;
 import DB.seeder;
 import DB.table;
 import org.apache.commons.lang3.time.StopWatch;
 
-import java.util.ArrayList;
 
 /**
  * TODO
@@ -41,6 +39,8 @@ public class Runner {
         for(int i=0; i<100; i++){
             farmers[i].run();
         }
+        watch.stop();
+        System.out.println(watch.getTime()+"ms");
 //        for (Thread thread : farmersT) {
 //            try {
 //                thread.join();
@@ -53,7 +53,6 @@ public class Runner {
         //input log target
         InputLog inputlog = new InputLog();
         inputlog.inputlog();
-        watch.stop();
-        System.out.println(watch.getTime()+"ms");
+
     }
 }
