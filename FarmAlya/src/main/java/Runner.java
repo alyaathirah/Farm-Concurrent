@@ -17,7 +17,7 @@ public class Runner {
          */
         database createDatabase = new database();
         table createTables = new table();
-        seeder createSeeder = new seeder();
+        seeder createSeeder = new seeder(); 
         createDatabase.databaseManager();
         createTables.tableManager();
         createSeeder.seederManager();

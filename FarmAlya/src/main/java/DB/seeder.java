@@ -219,10 +219,8 @@ public class seeder {
             pstmt.setString(8, row);
             pstmt.setString(9, farmId);
             pstmt.setString(10, userId);
-
             pstmt.execute();
             pstmt.close();
-
             // System.out.println("Seed table 'activities' successfully");
             // conn.close();
         } catch (SQLException ex) {
@@ -241,13 +239,11 @@ public class seeder {
         // System.out.println("Seeding data into table 'farmables'...");
         String SQL = "INSERT INTO farmables(farm_id,farmable_id,farmable_type) "
                 + "VALUES(?,?,?)";
-        try (Connection conn = table.getDatabaseConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             pstmt.setString(1, farmid);
             pstmt.setString(2, String.valueOf(randFarmableID));
             pstmt.setString(3, farmable_type);
             pstmt.execute();
-            conn.close();
             // System.out.println("Seed table 'farmables' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'farmables' failed");
