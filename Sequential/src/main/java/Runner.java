@@ -1,6 +1,6 @@
-import DB.database;
-import DB.seeder;
-import DB.table;
+import DB.Database;
+import DB.Seeder;
+import DB.Table;
 import org.apache.commons.lang3.time.StopWatch;
 
 
@@ -15,9 +15,9 @@ public class Runner {
         /**
          * Create database
          */
-        database createDatabase = new database();
-        table createTables = new table();
-        seeder createSeeder = new seeder(); 
+        Database createDatabase = new Database();
+        Table createTables = new Table();
+        Seeder createSeeder = new Seeder();
         createDatabase.databaseManager();
         createTables.tableManager();
         createSeeder.seederManager();

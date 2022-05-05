@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="FarmAlya" />
+        <module name="Sequential" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FarmAlya" target="11" />
+      <module name="Sequential" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

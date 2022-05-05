@@ -1,4 +1,4 @@
-import DB.fetcher;
+import DB.Fetcher;
 import java.util.Random;
 
 public class Farmer implements Runnable {
@@ -8,7 +8,7 @@ public class Farmer implements Runnable {
     String[] farms;
     Farm[] FarmObjects;
 
-    fetcher Fetcher = new fetcher();
+    DB.Fetcher Fetcher = new Fetcher();
     // int activityNum = 100;
     int activityNum = 100;
     // types

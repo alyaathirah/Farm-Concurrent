@@ -1,10 +1,8 @@
 
-import DB.table;
+import DB.Table;
 
 import java.sql.*;
 import java.util.Scanner;
-
-import com.mysql.cj.protocol.x.ContinuousInputStream;
 
 public class InputLog {
 
@@ -53,7 +51,7 @@ public class InputLog {
 
                 String SQL = "SELECT action,type,field,row,quantity,unit,date FROM activities WHERE farm_id="+select;
                 String str = "";
-                try (Connection conn = table.getDatabaseConnection();
+                try (Connection conn = Table.getDatabaseConnection();
                      PreparedStatement pstmt = conn.prepareStatement(SQL)) {
                     boolean results = pstmt.execute(SQL);
                     //Loop through the available result sets.
@@ -88,7 +86,7 @@ public class InputLog {
 
         String SQL = "SELECT * FROM activities WHERE user_id="+select;
         String str = "";
-        try (Connection conn = table.getDatabaseConnection();
+        try (Connection conn = Table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             boolean results = pstmt.execute(SQL);
             //Loop through the available result sets.
@@ -124,7 +122,7 @@ public class InputLog {
 
         String SQL = "SELECT *  FROM `activities` WHERE `farm_id` LIKE " + "'" + select  + "'" + " AND `type` LIKE " + "'" + select2  + "'";
         String str = "";
-        try (Connection conn = table.getDatabaseConnection();
+        try (Connection conn = Table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             boolean results = pstmt.execute(SQL);
             //Loop through the available result sets.
@@ -167,7 +165,7 @@ public class InputLog {
 
         String SQL = "SELECT *  FROM `activities` WHERE `farm_id` LIKE " + "'" + select  + "'" + " AND `type` LIKE " + "'" + select2  + "'" + " AND `date` between " + "'" + select3  + "'" + " AND " + "'" + select4  + "'";
         String str = "";
-        try (Connection conn = table.getDatabaseConnection();
+        try (Connection conn = Table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL)) {
             boolean results = pstmt.execute(SQL);
             //Loop through the available result sets.
@@ -202,7 +200,7 @@ public class InputLog {
     String select = input.nextLine();//farm
     String SQL1 = "SELECT action,type,field,row,quantity,unit,date FROM activities WHERE farm_id="+select;
     String str1 = "";
-    try (Connection conn = table.getDatabaseConnection();
+    try (Connection conn = Table.getDatabaseConnection();
          PreparedStatement pstmt = conn.prepareStatement(SQL1)) {
         boolean results = pstmt.execute(SQL1);
         //Loop through the available result sets.
@@ -228,7 +226,7 @@ public class InputLog {
     String select2 = input2.nextLine();//plant
     String SQL2 = "SELECT *  FROM `activities` WHERE `farm_id` LIKE " + "'" + select  + "'" + " AND `type` LIKE " + "'" + select2  + "'";
         String str2 = "";
-        try (Connection conn = table.getDatabaseConnection();
+        try (Connection conn = Table.getDatabaseConnection();
              PreparedStatement pstmt = conn.prepareStatement(SQL2)) {
             boolean results = pstmt.execute(SQL2);
             //Loop through the available result sets.
@@ -262,8 +260,8 @@ public class InputLog {
     
     String SQL = "SELECT `action`, `type`, `field`, `row`, `quantity`, `unit`, SUM(`quantity`) AS `sum-quantity` FROM `activities` WHERE `farm_id` LIKE " + "'" + select  + "'" + " AND `type` LIKE " + "'" + select2  + "'" + "AND `field` = " + select5 + " AND `row` = "+ select6 + " AND (`date` between " + "'" + select3  + "'" + " AND " + "'" + select4+ "')" + " GROUP BY `action` HAVING COUNT(`action`)>=1";
     String str ="";  //String sql = "SELECT action, SUM(`quantity`) AS `sum-quantity` FROM `activities` GROUP BY `action` HAVING COUNT(`action`)>1";
-    try (Connection conn = table.getDatabaseConnection();
-        Statement stmt = conn.createStatement();) {
+    try (Connection conn = Table.getDatabaseConnection();
+         Statement stmt = conn.createStatement();) {
         //Loop through the available result sets.
         ResultSet rs = stmt.executeQuery(SQL);
         //Show data from the result set.

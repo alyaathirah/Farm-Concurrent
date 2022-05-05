@@ -1,5 +1,5 @@
-import DB.fetcher;
-import DB.seeder;
+import DB.Fetcher;
+import DB.Seeder;
 import java.util.Random;
 
 public class Farm {
@@ -11,8 +11,8 @@ public class Farm {
     int[] pesticides;
     int[][] field;//field x row | each row store status of actions
 
-    fetcher Fetcher = new fetcher();
-    seeder Seeder = new seeder();
+    DB.Fetcher Fetcher = new Fetcher();
+    DB.Seeder Seeder = new Seeder();
     public Farm(int farmid){
         this.farmid = farmid;
         fetchFarmablesDB();

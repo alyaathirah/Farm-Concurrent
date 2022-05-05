@@ -9,14 +9,14 @@ import java.util.concurrent.TimeUnit;
 
 import com.github.javafaker.Faker;
 
-public class seeder {
+public class Seeder {
     Random rand = new Random();
     activity_counter counter = activity_counter.getInstance();
     Connection Mconn;
 
-    public seeder() {
+    public Seeder() {
         try {
-            Mconn = table.getDatabaseConnection();
+            Mconn = Table.getDatabaseConnection();
         } catch (SQLException e) {
             // need to have error handling here
             e.printStackTrace();
@@ -37,8 +37,7 @@ public class seeder {
         // System.out.println("Seeding data into table 'plants'...");
         String SQL = "INSERT INTO plants(id,name,unitType) "
                 + "VALUES(?,?,?)";
-        try (Connection conn = table.getDatabaseConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             String plantName = "";
             for (int i = 1; i < 101; i++) {
                 plantName = "plant" + i;
@@ -48,7 +47,7 @@ public class seeder {
                 pstmt.execute();
             }
             // System.out.println("Seed table 'plants' successfully");
-            conn.close();
+
         } catch (SQLException ex) {
             System.out.println("Seed table 'plants' failed");
             System.out.println(ex.getMessage());
@@ -62,8 +61,7 @@ public class seeder {
         // System.out.println("Seeding data into table 'fertilizers'...");
         String SQL = "INSERT INTO fertilizers(id,name,unitType) "
                 + "VALUES(?,?,?)";
-        try (Connection conn = table.getDatabaseConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             String fertilizerName = "";
             for (int i = 1; i < 101; i++) {
                 fertilizerName = "fertilizer" + i;
@@ -73,7 +71,7 @@ public class seeder {
                 pstmt.execute();
             }
             // System.out.println("Seed table 'fertilizers' successfully");
-            conn.close();
+
         } catch (SQLException ex) {
             System.out.println("Seed table 'fertilizers' failed");
             System.out.println(ex.getMessage());
@@ -87,8 +85,7 @@ public class seeder {
         // System.out.println("Seeding data into table 'pesticides'...");
         String SQL = "INSERT INTO pesticides(id,name,unitType) "
                 + "VALUES(?,?,?)";
-        try (Connection conn = table.getDatabaseConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             String pesticideName = "";
             for (int i = 1; i < 101; i++) {
                 pesticideName = "pesticide" + i;
@@ -98,7 +95,7 @@ public class seeder {
                 pstmt.execute();
             }
             // System.out.println("Seed table 'pesticides' successfully");
-            conn.close();
+
         } catch (SQLException ex) {
             System.out.println("Seed table 'pesticides' failed");
             System.out.println(ex.getMessage());
@@ -113,8 +110,7 @@ public class seeder {
         // System.out.println("Seeding data into table 'farms'...");
         String SQL = "INSERT INTO farms(id,name,address) "
                 + "VALUES(?,?,?)";
-        try (Connection conn = table.getDatabaseConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL, new String[] { "id" })) {
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
             String farmName = "";
             for (int i = 1; i < 11; i++) {
                 farmName = "farm" + i;
@@ -134,7 +130,7 @@ public class seeder {
                 generateFarmables(String.valueOf(i));
             }
             // System.out.println("Seed table 'farms' successfully");
-            conn.close();
+
         } catch (SQLException ex) {
             System.out.println("Seed table 'farms' failed");
             System.out.println(ex.getMessage());
@@ -165,8 +161,7 @@ public class seeder {
         // System.out.println("Seeding data into table 'users'...");
         String SQL = "INSERT INTO users(id,name,email,password,phoneNumber) "
                 + "VALUES(?,?,?,?,?)";
-        try (Connection conn = table.getDatabaseConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL, new String[] { "id" })) {
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
             for (int i = 1; i < 101; i++) {
                 pstmt.setString(1, Integer.toString(i));
                 pstmt.setString(2, faker.name().fullName());
@@ -187,7 +182,7 @@ public class seeder {
                 }
             }
             // System.out.println("Seed table 'users' successfully");
-            conn.close();
+
         } catch (SQLException ex) {
             System.out.println("Seed table 'users' failed");
             System.out.println(ex.getMessage());
@@ -222,7 +217,7 @@ public class seeder {
             pstmt.execute();
             pstmt.close();
             // System.out.println("Seed table 'activities' successfully");
-            // conn.close();
+            //
         } catch (SQLException ex) {
             System.out.println("Seed table 'activities' failed");
             System.out.println(ex.getMessage());
@@ -260,13 +255,12 @@ public class seeder {
         // System.out.println("Seeding data into table 'farmables'...");
         String SQL = "INSERT INTO farmables(farm_id,farmable_id,farmable_type) "
                 + "VALUES(?,?,?)";
-        try (Connection conn = table.getDatabaseConnection();
-                PreparedStatement pstmt = conn.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             pstmt.setString(1, String.valueOf(randFarmableID));
             pstmt.setString(2, userid);
             pstmt.setString(3, farmable_type);
             pstmt.execute();
-            conn.close();
+
             // System.out.println("Seed table 'farmables' successfully");
         } catch (SQLException ex) {
             System.out.println("Seed table 'farmables' failed");

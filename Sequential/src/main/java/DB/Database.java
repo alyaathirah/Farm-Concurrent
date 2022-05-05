@@ -15,7 +15,7 @@ import java.sql.Statement;
 
 // import java.sql.*;
 
-public class database {
+public class Database {
     static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     static final String SQL_URL = "jdbc:mysql://localhost/";
     static final String DB_NAME = "farms";
@@ -25,7 +25,7 @@ public class database {
     // manage all database related function here
 
     
-    public database() {
+    public Database() {
     }
 
     public void databaseManager() {
@@ -54,7 +54,7 @@ public class database {
     }
 
     //get connection
-    protected static Connection getConnection(String url, String username, String password){
+    protected static Connection getConnection(String url, String username, String password) throws SQLException {
         try {
             return DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {

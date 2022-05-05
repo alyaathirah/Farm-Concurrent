@@ -2,10 +2,10 @@ package DB;
 
 import java.sql.*;
 
-public class table {
-    static final String DB_URL = database.SQL_URL + database.DB_NAME;
-    static final String USERNAME = database.USERNAME;
-    static final String PASSWORD = database.PASSWORD;
+public class Table {
+    static final String DB_URL = Database.SQL_URL + Database.DB_NAME;
+    static final String USERNAME = Database.USERNAME;
+    static final String PASSWORD = Database.PASSWORD;
 
     public void tableManager() {
         createPlantsTable();
@@ -19,7 +19,7 @@ public class table {
 
     //
     public static Connection getDatabaseConnection() throws SQLException {
-        return database.getConnection(DB_URL, USERNAME, PASSWORD);
+        return Database.getConnection(DB_URL, USERNAME, PASSWORD);
     }
 
     // create table "plants"
