@@ -8,8 +8,9 @@ import org.apache.commons.lang3.time.StopWatch;
  * TODO
  * - create relationship of farms and its plants,fertilizers,pesticides
  */
-public class Runner {
+public class SequentialDriver {
     public static void main(String[] args){
+        System.out.println("Running sequential program");
         StopWatch watch = new StopWatch();
         watch.start();
         /**
@@ -41,14 +42,6 @@ public class Runner {
         }
         watch.stop();
         System.out.println(watch.getTime()+"ms");
-//        for (Thread thread : farmersT) {
-//            try {
-//                thread.join();
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//        }
-        //Create activity
 
         //input log target
         InputLog inputlog = new InputLog();

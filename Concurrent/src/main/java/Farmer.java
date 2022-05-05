@@ -1,7 +1,7 @@
 import DB.Fetcher;
 import java.util.Random;
 
-public class Farmer{
+public class Farmer implements Runnable {
     Random rand = new Random();
     int userid;
     String name;
@@ -9,6 +9,7 @@ public class Farmer{
     Farm[] FarmObjects;
 
     DB.Fetcher Fetcher = new Fetcher();
+    // int activityNum = 100;
     int activityNum = 100;
     // types
     String[] types = { "plant", "fertilizer", "pesticides" };
@@ -20,6 +21,7 @@ public class Farmer{
         farms = Fetcher.fetchFarmsByUser(userid);
     }
 
+    @Override
     public void run() {
         for (int i = 0; i < activityNum; i++) {// 100 activities
             createActivity();

@@ -33,7 +33,7 @@ public class Farm {
 //        for(int i=0; i<plants.length; i++)
 //            System.out.println(plants[i]);
     }
-    void getJob(int userid){//later set to synchronized in concurrent
+    synchronized void getJob(int userid){//later set to synchronized in concurrent
         //CONCURRENT: if status -1 meaning other users working on that row, so it will find other row or field or other farm to work on
         //String id, String date, String action, String type, String unit, double quantity, int field, int row, String farmId, String userId
 
