@@ -31,7 +31,7 @@ public class Farmer implements Runnable {
     public void createActivity() {// need id,date,action,type,unit,quantity,field,row,farmId,userId
         // Pick random farm
         Farm tempFarm = FarmObjects[Integer.parseInt(farms[rand.nextInt(farms.length)]) - 1];
-        tempFarm.getJob(userid);
+        tempFarm.getJob(userid); 
     }
 
     public void disaster() {

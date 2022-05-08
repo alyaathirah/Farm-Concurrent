@@ -34,7 +34,7 @@ public class Seeder {
     // seed data into table 'plants'
     private boolean seedPlants() {
         boolean result = false;
-        // System.out.println("Seeding data into table 'plants'...");
+        System.out.println("Seeding data into table 'plants'...");
         String SQL = "INSERT INTO plants(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
@@ -58,7 +58,7 @@ public class Seeder {
     // seed data into table 'fertilizers'
     private boolean seedFertilizers() {
         boolean result = false;
-        // System.out.println("Seeding data into table 'fertilizers'...");
+        System.out.println("Seeding data into table 'fertilizers'...");
         String SQL = "INSERT INTO fertilizers(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
@@ -82,7 +82,7 @@ public class Seeder {
     // seed data into table 'pesticides'
     private boolean seedPesticides() {
         boolean result = false;
-        // System.out.println("Seeding data into table 'pesticides'...");
+        System.out.println("Seeding data into table 'pesticides'...");
         String SQL = "INSERT INTO pesticides(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
@@ -107,7 +107,7 @@ public class Seeder {
     private boolean seedFarms() {
         boolean result = false;
         Faker faker = new Faker();
-        // System.out.println("Seeding data into table 'farms'...");
+        System.out.println("Seeding data into table 'farms'...");
         String SQL = "INSERT INTO farms(id,name,address) "
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
@@ -158,7 +158,7 @@ public class Seeder {
     private boolean seedUsers() {
         boolean result = false;
         Faker faker = new Faker();
-        // System.out.println("Seeding data into table 'users'...");
+        System.out.println("Seeding data into table 'users'...");
         String SQL = "INSERT INTO users(id,name,email,password,phoneNumber) "
                 + "VALUES(?,?,?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {

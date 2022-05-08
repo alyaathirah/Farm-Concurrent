@@ -34,24 +34,40 @@ public class Seeder {
     // seed data into table 'plants'
     private boolean seedPlants() {
         boolean result = false;
-        // System.out.println("Seeding data into table 'plants'...");
+        System.out.println("Seeding data into table 'plants'...");
         String SQL = "INSERT INTO plants(id,name,unitType) "
                 + "VALUES(?,?,?)";
+                int i = 1;
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             String plantName = "";
-            for (int i = 1; i < 101; i++) {
+            for (; i < 101; i++) {
                 plantName = "plant" + i;
                 pstmt.setString(1, Integer.toString(i));
                 pstmt.setString(2, plantName);
                 pstmt.setString(3, "mass");
+                
+                try {
                 pstmt.execute();
+                } catch (Exception e) {
+                    Local.save(pstmt.toString());
+                    //save to local
+                    System.out.println(i);
+                }
             }
             // System.out.println("Seed table 'plants' successfully");
 
         } catch (SQLException ex) {
+            String plantName;
+            for (; i < 101; i++) {
+                plantName = "plant" + i;
+              Local.save("INSERT INTO plants(id,name,unitType) "
+                + "VALUES("+ Integer.toString(i) +","+ plantName +",mass)");
+                // continue to save to local
+            }
             System.out.println("Seed table 'plants' failed");
             System.out.println(ex.getMessage());
         }
+        System.out.println(i);
         return result;
     }
 
@@ -219,7 +235,9 @@ public class Seeder {
             // System.out.println("Seed table 'activities' successfully");
             //
         } catch (SQLException ex) {
-            System.out.println("Seed table 'activities' failed");
+            Local.save("INSERT INTO activities(id, date, action, type, unit, quantity, field, row, farm_id, user_id) "
+            + "VALUES("+ String.valueOf(counter.getCount()) +","+ formatter.format(date) +","+ action +","+ type +","+ unit +","+ quantity +","+ field +","+ row +","+ farmId +","+ userId +")");
+            // System.out.println("Seed table 'activities' failed");
             System.out.println(ex.getMessage());
         }
 

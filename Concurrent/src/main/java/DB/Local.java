@@ -6,18 +6,12 @@ public class Local {
 
     private static FileOutputStream fos;
 
-    public Local()
-    {
-        try {
-            fos = new FileOutputStream("Local.txt", true);
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+    public Local() {
     }
 
-    public void save(String sql) {
-
+    public static void save(String sql) {
         try {
+            fos = new FileOutputStream("Local.txt", true);
             sql += "\n";
             fos.write(sql.getBytes());
         } catch (Exception e) {

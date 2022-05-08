@@ -58,7 +58,7 @@ public class Database {
         try {
             return DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
-            System.out.println("Make sure to open xampp");
+            System.out.println("Make sure to open xampp or the database is created");
             System.exit(1);
             return null;
         }
