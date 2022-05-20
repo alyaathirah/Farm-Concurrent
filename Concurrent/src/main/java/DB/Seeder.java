@@ -24,22 +24,22 @@ public class Seeder {
     }
 
     public void seederManager() {
-        seedPlants();
-        seedFertilizers();
-        seedPesticides();
-        seedFarms();
-        seedUsers();
+        seedPlants(101);
+        seedFertilizers(101);
+        seedPesticides(101);
+        seedFarms(11);
+        seedUsers(101);
     }
 
     // seed data into table 'plants'
-    private boolean seedPlants() {
+    private boolean seedPlants(int n) {
         boolean result = false;
         // System.out.println("Seeding data into table 'plants'...");
         String SQL = "INSERT INTO plants(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             String plantName = "";
-            for (int i = 1; i < 101; i++) {
+            for (int i = 1; i < n; i++) {
                 plantName = "plant" + i;
                 pstmt.setString(1, Integer.toString(i));
                 pstmt.setString(2, plantName);
@@ -56,14 +56,14 @@ public class Seeder {
     }
 
     // seed data into table 'fertilizers'
-    private boolean seedFertilizers() {
+    private boolean seedFertilizers(int n) {
         boolean result = false;
         // System.out.println("Seeding data into table 'fertilizers'...");
         String SQL = "INSERT INTO fertilizers(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             String fertilizerName = "";
-            for (int i = 1; i < 101; i++) {
+            for (int i = 1; i < n; i++) {
                 fertilizerName = "fertilizer" + i;
                 pstmt.setString(1, Integer.toString(i));
                 pstmt.setString(2, fertilizerName);
@@ -80,14 +80,14 @@ public class Seeder {
     }
 
     // seed data into table 'pesticides'
-    private boolean seedPesticides() {
+    private boolean seedPesticides(int n) {
         boolean result = false;
         // System.out.println("Seeding data into table 'pesticides'...");
         String SQL = "INSERT INTO pesticides(id,name,unitType) "
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
             String pesticideName = "";
-            for (int i = 1; i < 101; i++) {
+            for (int i = 1; i < n; i++) {
                 pesticideName = "pesticide" + i;
                 pstmt.setString(1, Integer.toString(i));
                 pstmt.setString(2, pesticideName);
@@ -104,7 +104,7 @@ public class Seeder {
     }
 
     // seed data into table 'farms'
-    private boolean seedFarms() {
+    private boolean seedFarms(int n) {
         boolean result = false;
         Faker faker = new Faker();
         // System.out.println("Seeding data into table 'farms'...");
@@ -112,7 +112,7 @@ public class Seeder {
                 + "VALUES(?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
             String farmName = "";
-            for (int i = 1; i < 11; i++) {
+            for (int i = 1; i < n; i++) {
                 farmName = "farm" + i;
                 pstmt.setString(1, Integer.toString(i));
                 pstmt.setString(2, farmName);
@@ -155,14 +155,14 @@ public class Seeder {
     }
 
     // seed data into table 'users'
-    private boolean seedUsers() {
+    private boolean seedUsers(int n) {
         boolean result = false;
         Faker faker = new Faker();
         // System.out.println("Seeding data into table 'users'...");
         String SQL = "INSERT INTO users(id,name,email,password,phoneNumber) "
                 + "VALUES(?,?,?,?,?)";
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
-            for (int i = 1; i < 101; i++) {
+            for (int i = 1; i < n; i++) {
                 pstmt.setString(1, Integer.toString(i));
                 pstmt.setString(2, faker.name().fullName());
                 pstmt.setString(3, faker.internet().emailAddress());
