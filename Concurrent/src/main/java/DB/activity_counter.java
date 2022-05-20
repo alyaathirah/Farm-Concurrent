@@ -10,7 +10,7 @@ public class activity_counter {
     public static activity_counter getInstance(){
         return counter;
     }
-    public int getCount(){
+    public synchronized int getCount(){
         return count++;
     }
 }
