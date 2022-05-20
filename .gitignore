@@ -3,3 +3,4 @@ Sequential/target
 
 #ignore idea workspace
 .idea
+.class
