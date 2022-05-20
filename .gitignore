@@ -1,0 +1,6 @@
+#ignore target folder
+Sequential/target
+
+#ignore idea workspace
+.idea
+.class
