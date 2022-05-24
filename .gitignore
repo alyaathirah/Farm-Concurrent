@@ -4,3 +4,4 @@ Sequential/target
 #ignore idea workspace
 .idea
 .class
+Concurrent/target/classes/DB/Seeder.class
