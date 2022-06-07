@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
-
 import com.github.javafaker.Faker;
 
 public class Seeder {
@@ -23,12 +22,12 @@ public class Seeder {
         }
     }
 
-    public void seederManager() {
-        seedPlants(101);
-        seedFertilizers(101);
-        seedPesticides(101);
-        seedFarms(11);
-        seedUsers(101);
+    public void seederManager(int nPlant, int nFertilizer, int nPesticide, int nFarm, int nUser) {
+        seedFertilizers(nFertilizer);
+        seedPesticides(nPesticide);
+        seedPlants(nPlant);
+        seedFarms(nFarm);
+        seedUsers(nUser);
     }
 
     private boolean seedPlants(int n) {
