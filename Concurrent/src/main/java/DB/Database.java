@@ -30,6 +30,7 @@ public class Database {
 
     public void databaseManager() {
         if (checkDriver() == true) {
+            
             if (checkDatabaseExisted() == true) {
                 dropDatabase();
             }

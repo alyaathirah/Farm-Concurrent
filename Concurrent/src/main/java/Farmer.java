@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
+
 public class Farmer implements Runnable {
     static List<Farmer> skipFarmer = new ArrayList<Farmer>();
     static int totalAct = 0, totalInterruptedAct = 0;
@@ -40,7 +42,7 @@ public class Farmer implements Runnable {
                 }
                 createActivity();
             }
-        }else{
+        } else {
             for (int i = 0; i < nSkipAct; i++) {
                 createActivity();
             }
@@ -64,8 +66,8 @@ public class Farmer implements Runnable {
         }
     }
 
-    private void addToInterruptList(){
-        //add this farmer to Interrupted List
+    private void addToInterruptList() {
+        // add this farmer to Interrupted List
         if (!listed) {
             Farmer.skipFarmer.add(this);
             this.listed = true;

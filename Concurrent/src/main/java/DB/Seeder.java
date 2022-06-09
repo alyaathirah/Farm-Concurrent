@@ -9,13 +9,14 @@ import java.util.concurrent.TimeUnit;
 import com.github.javafaker.Faker;
 
 public class Seeder {
-    Random rand = new Random();
-    activity_counter counter = activity_counter.getInstance();
-    Connection Mconn;
+    private Random rand = new Random();
+    private activity_counter counter = activity_counter.getInstance();
+    private Connection Mconn;
 
     public Seeder() {
         try {
             Mconn = Table.getDatabaseConnection();
+            Mconn.setAutoCommit(false);
         } catch (SQLException e) {
             // need to have error handling here
             e.printStackTrace();
@@ -23,31 +24,61 @@ public class Seeder {
     }
 
     public void seederManager(int nPlant, int nFertilizer, int nPesticide, int nFarm, int nUser) {
+        seedFarms(nFarm);
         seedFertilizers(nFertilizer);
         seedPesticides(nPesticide);
         seedPlants(nPlant);
-        seedFarms(nFarm);
         seedUsers(nUser);
     }
 
-    private boolean seedPlants(int n) {
-        // seed data into table 'plants'
-        boolean result = false;
-        String SQL = "INSERT INTO plants(id,name,unitType) " + "VALUES(?,?,?)";
-        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
+    public void closeConn() {
+        try {
+            if (Mconn != null)
+                Mconn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-            String plantName = "";
+    private void rollback() {
+        try {
+            if (Mconn != null)
+                Mconn.rollback();
+            System.out.println("rollback occurred");
+        } catch (SQLException ex2) {
+            ex2.printStackTrace();
+        }
+    }
+
+    private boolean seedFarms(int n) {
+        // seed data into table 'farms'
+        boolean result = false;
+        Faker faker = new Faker();
+        String SQL = "INSERT INTO farms(id,name,address) " + "VALUES(?,?,?)";
+
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
+
+            String farmName = "";
             for (int i = 1; i < n; i++) {
-                plantName = "plant" + i;
+                farmName = "farm" + i;
                 pstmt.setString(1, Integer.toString(i));
-                pstmt.setString(2, plantName);
-                pstmt.setString(3, "mass");
+                pstmt.setString(2, farmName);
+                pstmt.setString(3, faker.address().streetAddress());
                 pstmt.execute();
+                Mconn.commit();
+
+                generateFarmables(String.valueOf(i));
             }
 
         } catch (SQLException ex) {
-            System.out.println("Seed table 'plants' failed");
+            System.out.println("Seed table 'farms' failed");
             System.out.println(ex.getMessage());
+            rollback();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // can use here to close resources
         }
         return result;
     }
@@ -66,11 +97,14 @@ public class Seeder {
                 pstmt.setString(2, fertilizerName);
                 pstmt.setString(3, "pack");
                 pstmt.execute();
+                Mconn.commit();
+
             }
 
         } catch (SQLException ex) {
             System.out.println("Seed table 'fertilizers' failed");
             System.out.println(ex.getMessage());
+            rollback();
         }
         return result;
     }
@@ -89,46 +123,69 @@ public class Seeder {
                 pstmt.setString(2, pesticideName);
                 pstmt.setString(3, "mass");
                 pstmt.execute();
+                Mconn.commit();
+
             }
 
         } catch (SQLException ex) {
             System.out.println("Seed table 'pesticides' failed");
             System.out.println(ex.getMessage());
+            rollback();
         }
         return result;
     }
 
-    private boolean seedFarms(int n) {
-        // seed data into table 'farms'
+    private boolean seedPlants(int n) {
+        // seed data into table 'plants'
         boolean result = false;
-        Faker faker = new Faker();
-        String SQL = "INSERT INTO farms(id,name,address) " + "VALUES(?,?,?)";
+        String SQL = "INSERT INTO plants(id,name,unitType) " + "VALUES(?,?,?)";
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
 
-        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
-
-            String farmName = "";
+            String plantName = "";
             for (int i = 1; i < n; i++) {
-                farmName = "farm" + i;
+                plantName = "plant" + i;
                 pstmt.setString(1, Integer.toString(i));
-                pstmt.setString(2, farmName);
-                pstmt.setString(3, faker.address().streetAddress());
+                pstmt.setString(2, plantName);
+                pstmt.setString(3, "mass");
                 pstmt.execute();
+                Mconn.commit();
 
-                // return autoincrement id
-                // long key = -1L;
-                // ResultSet rs = pstmt.getGeneratedKeys();
-                //
-                // if (rs.next()) {
-                // key = rs.getLong(1);
-                // }
-                // generate relationship with plants, fertilizer, and pesticides
-
-                generateFarmables(String.valueOf(i));
             }
 
         } catch (SQLException ex) {
-            System.out.println("Seed table 'farms' failed");
+            System.out.println("Seed table 'plants' failed");
             System.out.println(ex.getMessage());
+            rollback();
+        }
+        return result;
+    }
+
+    private boolean seedUsers(int n) {
+        // seed data into table 'users'
+        boolean result = false;
+        Faker faker = new Faker();
+        String SQL = "INSERT INTO users(id,name,email,password,phoneNumber) " + "VALUES(?,?,?,?,?)";
+
+        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
+
+            for (int i = 1; i < n; i++) {
+                pstmt.setString(1, Integer.toString(i));
+                pstmt.setString(2, faker.name().fullName());
+                pstmt.setString(3, faker.internet().emailAddress());
+                pstmt.setString(4, faker.internet().password());
+                pstmt.setString(5, faker.phoneNumber().phoneNumber());
+                pstmt.execute();
+                Mconn.commit();
+
+                for (int j = 1; j <= (rand.nextInt(5) + 1); j++) {
+                    assignFarm(String.valueOf(i), "farmer");
+                }
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Seed table 'users' failed");
+            System.out.println(ex.getMessage());
+            rollback();
         }
         return result;
     }
@@ -149,51 +206,22 @@ public class Seeder {
         }
     }
 
-    private boolean seedUsers(int n) {
-        // seed data into table 'users'
-        boolean result = false;
-        Faker faker = new Faker();
-        String SQL = "INSERT INTO users(id,name,email,password,phoneNumber) " + "VALUES(?,?,?,?,?)";
-
-        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL, new String[] { "id" })) {
-
-            for (int i = 1; i < n; i++) {
-                pstmt.setString(1, Integer.toString(i));
-                pstmt.setString(2, faker.name().fullName());
-                pstmt.setString(3, faker.internet().emailAddress());
-                pstmt.setString(4, faker.internet().password());
-                pstmt.setString(5, faker.phoneNumber().phoneNumber());
-                pstmt.execute();
-                // assign to farms
-                // return autoincrement id
-                // String key = "";
-                // ResultSet rs = pstmt.getGeneratedKeys();
-                // if (rs.next()) {
-                // key = rs.getString(1);
-                // }
-                // System.out.println(key);
-                for (int j = 1; j <= (rand.nextInt(5) + 1); j++) {
-                    assignFarm(String.valueOf(i), "farmer");
-                }
-            }
-
-        } catch (SQLException ex) {
-            System.out.println("Seed table 'users' failed");
-            System.out.println(ex.getMessage());
-        }
-        return result;
-    }
-
-    public boolean seedActivity(String action, String type, String unit, String quantity, String field, String row, String farmId, String userId) {
+    public boolean seedActivity(String action, String type, String unit, String quantity, String field, String row,
+            String farmId, String userId) {
         // seed data into table 'activities'
         boolean result = false;
         // Date date = new Date(System.currentTimeMillis());
         Faker faker = new Faker();
         Date date = faker.date().future(rand.nextInt(3) + 1, TimeUnit.DAYS);
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String SQL = "INSERT INTO activities(id, date, action, type, unit, quantity, field, row, farm_id, user_id) " + "VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String SQL = "INSERT INTO activities(id, date, action, type, unit, quantity, field, row, farm_id, user_id) "
+                + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
+
+            if (randomInterrupt(2)) {
+                throw new SQLException("simulate rollback");
+            }
 
             pstmt.setString(1, String.valueOf(counter.getCount()));
             pstmt.setString(2, formatter.format(date));
@@ -206,11 +234,12 @@ public class Seeder {
             pstmt.setString(9, farmId);
             pstmt.setString(10, userId);
             pstmt.execute();
-            pstmt.close();
+            Mconn.commit();
 
         } catch (SQLException ex) {
             System.out.println("Seed table 'activities' failed");
             System.out.println(ex.getMessage());
+            rollback();
         }
         return result;
     }
@@ -228,10 +257,12 @@ public class Seeder {
             pstmt.setString(2, String.valueOf(randFarmableID));
             pstmt.setString(3, farmable_type);
             pstmt.execute();
+            Mconn.commit();
 
         } catch (SQLException ex) {
             System.out.println("Seed table 'farmables' failed");
             System.out.println(ex.getMessage());
+            rollback();
         }
         return result;
     }
@@ -250,11 +281,24 @@ public class Seeder {
             pstmt.setString(2, userid);
             pstmt.setString(3, farmable_type);
             pstmt.execute();
-
+            Mconn.commit();
         } catch (SQLException ex) {
             System.out.println("Seed table 'farmables' failed");
             System.out.println(ex.getMessage());
+            rollback();
         }
         return result;
+    }
+
+    private boolean randomInterrupt(int percentage) {
+        if (percentage > 100) {
+            System.out.println("Percentage over 100 is not allowed.\n...percentage value changed to 100...");
+            percentage = 100;
+        }
+        if (rand.nextInt(100) <= percentage) {
+            // System.out.println(Thread.currentThread().getName());
+            return true;
+        }
+        return false;
     }
 }

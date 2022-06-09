@@ -17,7 +17,6 @@ public class ConcurrentDriver {
     public static void main(String[] args){
         System.out.println("Running concurrent program");
         StopWatch watch = new StopWatch();
-        watch.start();
         /**
          * Create database
          */
@@ -28,6 +27,7 @@ public class ConcurrentDriver {
         createTables.tableManager();
         createSeeder.seederManager(101, 101, 101, 11, 101);
 
+        watch.start();  
         int nFarmer = 100;
 
         //Create activities for each users
@@ -70,6 +70,7 @@ public class ConcurrentDriver {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        createSeeder.closeConn();
         //END of RUN INTERRRUPTED ACTIVITY (turns)
         watch.stop();
         System.out.println("Activity excuted: "+Farmer.totalAct + " Interrupted: "+Farmer.totalInterruptedAct);
