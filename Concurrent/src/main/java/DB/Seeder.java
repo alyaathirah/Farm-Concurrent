@@ -44,7 +44,7 @@ public class Seeder {
         try {
             if (Mconn != null)
                 Mconn.rollback();
-            System.out.println("rollback occurred");
+            // System.out.println("rollback occurred");
         } catch (SQLException ex2) {
             ex2.printStackTrace();
         }
@@ -220,7 +220,7 @@ public class Seeder {
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
 
             if (randomInterrupt(2)) {
-                throw new SQLException("simulate rollback");
+                // throw new SQLException("simulate rollback");
             }
 
             pstmt.setString(1, String.valueOf(counter.getCount()));
