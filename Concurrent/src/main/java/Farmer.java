@@ -31,8 +31,10 @@ public class Farmer implements Runnable {
     public void run() {
         if (!listed) {
             for (int i = 0; i < activityNum; i++) {
+
                 // give random chances of interrupt
-                randomInterrupt(6);
+                interruptProbability(2);
+
                 // if interrupted skip the activity and change the flag back
                 if (Thread.interrupted()) {
                     addToInterruptList();
@@ -50,20 +52,20 @@ public class Farmer implements Runnable {
     }
 
     public void createActivity() {// need id,date,action,type,unit,quantity,field,row,farmId,userId
-        totalAct++;
+
         // Pick random farm
         Farm tempFarm = FarmObjects[Integer.parseInt(farms[rand.nextInt(farms.length)]) - 1];
-        tempFarm.getJob(userid);
+        if (tempFarm.getJob(userid)) {
+            totalAct++;
+        } else {
+            totalInterruptedAct++;
+            nSkipAct++;
+        }
     }
 
-    private void randomInterrupt(int percentage){
-        if(percentage > 100){
-            System.out.println("Percentage over 100 is not allowed.\n...percentage value changed to 100...");
-            percentage = 100;
-        }
-        if (rand.nextInt(activityNum) <= (percentage/100)*activityNum) {
+    private void interruptProbability(int percentage) {
+        if (this.rand.nextInt(1, 101) <= percentage)
             Thread.currentThread().interrupt();
-        }
     }
 
     private void addToInterruptList() {

@@ -23,7 +23,7 @@ public class ConcurrentDriver {
         //start timer (to measure the speed of activity)
         watch.start();
 
-        //sreate activities for each farmers
+        //create activities for each farmers
         int nFarmer = 100;
         Farm[] farms = new Farm[10];
         for(int i=0; i<10; i++){
@@ -40,6 +40,8 @@ public class ConcurrentDriver {
         //start farmers' activities
         for(int i=0; i<nFarmer; i++){
             farmersT[i].start();
+            
+            // executorService.execute(farmers[i]);
         }
 
         for (Thread thread : farmersT) {

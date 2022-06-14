@@ -36,7 +36,7 @@ public class Farm {
         // System.out.println(plants[i]);
     }
 
-    synchronized void getJob(int userid) {// later set to synchronized in concurrent
+    synchronized boolean getJob(int userid) {// later set to synchronized in concurrent
         // CONCURRENT: if status -1 meaning other users working on that row, so it will
         // find other row or field or other farm to work on
         // String id, String date, String action, String type, String unit, double
@@ -72,7 +72,8 @@ public class Farm {
         else
             tempType = "none";
         // push to database
-        Seeder.seedActivity(tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
+        return Seeder.seedActivity(tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
                 String.valueOf(tempRow), String.valueOf(farmid), String.valueOf(userid));
+
     }
 }

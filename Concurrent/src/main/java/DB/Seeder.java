@@ -207,9 +207,8 @@ public class Seeder {
     }
 
     public boolean seedActivity(String action, String type, String unit, String quantity, String field, String row,
-            String farmId, String userId) {
+        String farmId, String userId) {
         // seed data into table 'activities'
-        boolean result = false;
         // Date date = new Date(System.currentTimeMillis());
         Faker faker = new Faker();
         Date date = faker.date().future(rand.nextInt(3) + 1, TimeUnit.DAYS);
@@ -218,10 +217,6 @@ public class Seeder {
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
 
         try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
-
-            if (randomInterrupt(2)) {
-                // throw new SQLException("simulate rollback");
-            }
 
             pstmt.setString(1, String.valueOf(counter.getCount()));
             pstmt.setString(2, formatter.format(date));
@@ -236,12 +231,17 @@ public class Seeder {
             pstmt.execute();
             Mconn.commit();
 
+            //rollback on probability given: 2%
+            if (this.rand.nextInt(1, 101) <= 2)
+                throw new SQLException("simulate rollback");
+
         } catch (SQLException ex) {
-            System.out.println("Seed table 'activities' failed");
-            System.out.println(ex.getMessage());
+            // System.out.println("Seed table 'activities' failed");
+            // System.out.println(ex.getMessage());
             rollback();
+            return false;
         }
-        return result;
+        return true;
     }
 
     private boolean seedFarmable(String farmid, String farmable_type) {
@@ -288,17 +288,5 @@ public class Seeder {
             rollback();
         }
         return result;
-    }
-
-    private boolean randomInterrupt(int percentage) {
-        if (percentage > 100) {
-            System.out.println("Percentage over 100 is not allowed.\n...percentage value changed to 100...");
-            percentage = 100;
-        }
-        if (rand.nextInt(100) <= percentage) {
-            // System.out.println(Thread.currentThread().getName());
-            return true;
-        }
-        return false;
     }
 }
