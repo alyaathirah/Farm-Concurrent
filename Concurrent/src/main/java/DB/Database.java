@@ -66,7 +66,6 @@ public class Database {
 
     // check database exists
     private boolean checkDatabaseExisted() {
-        System.out.println("hello");
         boolean result = false;
         Connection conn = null;
         ResultSet rs = null;

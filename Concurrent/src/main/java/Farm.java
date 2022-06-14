@@ -35,7 +35,23 @@ public class Farm {
         // for(int i=0; i<plants.length; i++)
         // System.out.println(plants[i]);
     }
-
+//    synchronized int[] getFieldRow(){
+//        // get random field index
+//        int tempField = rand.nextInt(plants.length);
+//        // get random row index
+//        int tempRow = rand.nextInt(5);
+//        // check status
+//        int tempStatus = field[tempField][tempRow];
+//        while (tempStatus == -1){
+//            if (tempStatus == -1)
+//                return new int[]{-1, -1};
+//            else {
+//                return new int[]{tempField, tempField};
+//            }
+//        }
+//        return new int[]{-1, -1};
+//
+//    }
     synchronized boolean getJob(int userid) {// later set to synchronized in concurrent
         // CONCURRENT: if status -1 meaning other users working on that row, so it will
         // find other row or field or other farm to work on

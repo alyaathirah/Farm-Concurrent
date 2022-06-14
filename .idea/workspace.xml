@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="9b8eed52-47e2-47a8-8bd2-6828c3b644ba" name="Changes" comment="Change naming">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/ConcurrentDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/ConcurrentDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Seeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Seeder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/Farm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/Farmer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

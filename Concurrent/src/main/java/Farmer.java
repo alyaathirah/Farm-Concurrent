@@ -64,8 +64,10 @@ public class Farmer implements Runnable {
     }
 
     private void interruptProbability(int percentage) {
-        if (this.rand.nextInt(1, 101) <= percentage)
+        if (this.rand.nextInt(101) <= percentage) {
+//            System.out.println("Farmer "+userid+"\tActivity "+nSkipAct);
             Thread.currentThread().interrupt();
+        }
     }
 
     private void addToInterruptList() {

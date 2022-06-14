@@ -232,7 +232,7 @@ public class Seeder {
             Mconn.commit();
 
             //rollback on probability given: 2%
-            if (this.rand.nextInt(1, 101) <= 2)
+            if (this.rand.nextInt(101) <= 2)
                 throw new SQLException("simulate rollback");
 
         } catch (SQLException ex) {
