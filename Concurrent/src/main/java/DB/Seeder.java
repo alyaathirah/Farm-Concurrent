@@ -206,7 +206,7 @@ public class Seeder {
         }
     }
 
-    public boolean seedActivity(String action, String type, String unit, String quantity, String field, String row,
+    public void seedActivity(String action, String type, String unit, String quantity, String field, String row,
         String farmId, String userId) {
         // seed data into table 'activities'
         // Date date = new Date(System.currentTimeMillis());
@@ -232,16 +232,14 @@ public class Seeder {
             Mconn.commit();
 
             //rollback on probability given: 2%
-            if (this.rand.nextInt(101) <= 2)
+            if (this.rand.nextInt(101) <= 8)
                 throw new SQLException("simulate rollback");
 
         } catch (SQLException ex) {
             // System.out.println("Seed table 'activities' failed");
             // System.out.println(ex.getMessage());
             rollback();
-            return false;
         }
-        return true;
     }
 
     private boolean seedFarmable(String farmid, String farmable_type) {

@@ -3,19 +3,18 @@ import DB.Fetcher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Farmer implements Runnable {
     static List<Farmer> skipFarmer = new ArrayList<Farmer>();
-    static int totalAct = 0, totalInterruptedAct = 0;
+    static AtomicInteger totalAct = new AtomicInteger();
+    static AtomicInteger totalInterruptedAct = new AtomicInteger();
     int nSkipAct = 0, userid, activityNum = 100;
     boolean listed = false;
     Random rand = new Random();
     String name;
     String[] farms;
     Farm[] FarmObjects;
-
     DB.Fetcher Fetcher = new Fetcher();
     // types
     String[] types = { "plant", "fertilizer", "pesticides" };
@@ -38,7 +37,7 @@ public class Farmer implements Runnable {
                 // if interrupted skip the activity and change the flag back
                 if (Thread.interrupted()) {
                     addToInterruptList();
-                    totalInterruptedAct++;
+                    totalInterruptedAct.incrementAndGet();
                     nSkipAct++;
                     continue;
                 }
@@ -55,17 +54,13 @@ public class Farmer implements Runnable {
 
         // Pick random farm
         Farm tempFarm = FarmObjects[Integer.parseInt(farms[rand.nextInt(farms.length)]) - 1];
-        if (tempFarm.getJob(userid)) {
-            totalAct++;
-        } else {
-            totalInterruptedAct++;
-            nSkipAct++;
-        }
+            tempFarm.getJob(userid);
+            totalAct.incrementAndGet();
     }
 
     private void interruptProbability(int percentage) {
         if (this.rand.nextInt(101) <= percentage) {
-//            System.out.println("Farmer "+userid+"\tActivity "+nSkipAct);
+            // System.out.println("Farmer "+userid+"\tActivity "+nSkipAct);
             Thread.currentThread().interrupt();
         }
     }

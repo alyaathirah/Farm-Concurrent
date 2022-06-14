@@ -52,7 +52,9 @@ public class ConcurrentDriver {
             }
         }
         System.out.println("Thread joined");
-        
+
+        System.out.println("Activities");
+        System.out.println("Uninterrupted: "+Farmer.totalAct.get());
         //running n skipped activity (interrupted activity)
         ExecutorService executorService = Executors.newFixedThreadPool(16);
         for (Farmer sfarmer : Farmer.skipFarmer) {
@@ -70,7 +72,8 @@ public class ConcurrentDriver {
         watch.stop();
 
         //simple report
-        System.out.println("Activity excuted: "+Farmer.totalAct + " Interrupted: "+Farmer.totalInterruptedAct);
+        System.out.println("Interrupted: "+Farmer.totalInterruptedAct.get());
+        System.out.println("Total: "+Farmer.totalAct.get());
         System.out.println(watch.getTime()+"ms");
 
         //input log target
