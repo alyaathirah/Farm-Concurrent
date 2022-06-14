@@ -51,6 +51,7 @@ public class Database {
             // System.out.println(ex.getMessage());
             
         }
+
         return result;
     }
 
@@ -73,14 +74,16 @@ public class Database {
 
     // check database exists
     private boolean checkDatabaseExisted() {
+        System.out.println("hello");
         boolean result = false;
         Connection conn = null;
         ResultSet rs = null;
         try {
             conn = getSQLConnection();
             String dbName = DB_NAME;
+
             if (conn != null) {
-                // System.out.println("Checking if database '" + DB_NAME + "' exists...");
+                System.out.println("Checking if database '" + DB_NAME + "' exists...");
                 rs = conn.getMetaData().getCatalogs();
                 while (rs.next()) {
                     String catalogs = rs.getString(1);

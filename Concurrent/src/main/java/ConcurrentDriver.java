@@ -13,9 +13,10 @@ public class ConcurrentDriver {
         
         //create database
         Database createDatabase = new Database();
+        createDatabase.databaseManager();
+
         Table createTables = new Table();
         Seeder createSeeder = new Seeder();
-        createDatabase.databaseManager();
         createTables.tableManager();
         createSeeder.seederManager(101, 101, 101, 11, 101);
 

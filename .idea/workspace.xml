@@ -7,7 +7,7 @@
     <list default="true" id="9b8eed52-47e2-47a8-8bd2-6828c3b644ba" name="Changes" comment="Change naming">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/ConcurrentDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/ConcurrentDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/DB/activity_counter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/DB/activity_counter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,27 +40,12 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="useMavenConfig" value="true" />
-      </MavenGeneralSettings>
-    </option>
-  </component>
   <component name="ProjectId" id="27HC4syBhFjj9WY4SoPrfn6moOd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/gladdy/Documents/GitHub/Concurrent-Lab&quot;
-  }
-}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -153,6 +138,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Assign users to farm" />
