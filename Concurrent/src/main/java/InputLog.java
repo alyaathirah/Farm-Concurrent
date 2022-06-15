@@ -221,8 +221,6 @@ public class InputLog {
     int select5 = input5.nextInt();//field
     System.out.print("Input row: ");
     int select6 = input6.nextInt();//row
-    
-    input.close();input2.close();input3.close();input4.close();input5.close();input6.close();
 
     //display summarized log
     String SQL = "SELECT `action`, `type`, `field`, `row`, `quantity`, `unit`, SUM(`quantity`) AS `sum-quantity` FROM `activities` WHERE `farm_id` LIKE " + "'" + select  + "'" + " AND `type` LIKE " + "'" + select2  + "'" + "AND `field` = " + select5 + " AND `row` = "+ select6 + " AND (`date` between " + "'" + select3  + "'" + " AND " + "'" + select4+ "')" + " GROUP BY `action` HAVING COUNT(`action`)>=1";
