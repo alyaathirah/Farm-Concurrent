@@ -12,7 +12,7 @@ public class Farmer implements Runnable {
     static AtomicInteger totalInterruptedAct = new AtomicInteger();
 
     ArrayList<String[] > skippedActivity = new ArrayList<>();
-    int nSkipAct = 0, userid, activityNum = 100;
+    int nSkipAct = 0, userid, activityNum = 1000;
 
     boolean listed = false;
     Random rand = new Random();

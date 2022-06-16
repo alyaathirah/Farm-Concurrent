@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9b8eed52-47e2-47a8-8bd2-6828c3b644ba" name="Changes" comment="Change naming">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Seeder.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/DB/Seeder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/DB/activity_counter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/DB/activity_counter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/Farm.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/Farm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Concurrent/src/main/java/Farmer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Concurrent/src/main/java/Farmer.java" afterDir="false" />
     </list>
@@ -147,5 +147,8 @@
     <MESSAGE value="input log activity to display" />
     <MESSAGE value="Change naming" />
     <option name="LAST_COMMIT_MESSAGE" value="Change naming" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Farm_Concurrent$ConcurrentDriver.ic" NAME="ConcurrentDriver Coverage Results" MODIFIED="1655368782215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
