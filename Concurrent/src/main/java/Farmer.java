@@ -11,16 +11,16 @@ public class Farmer implements Runnable {
     static AtomicInteger totalAct = new AtomicInteger();
     static AtomicInteger totalInterruptedAct = new AtomicInteger();
 
-    ArrayList<String[] > skippedActivity = new ArrayList<String[]>();
+    ArrayList<String[] > skippedActivity = new ArrayList<>();
     int nSkipAct = 0, userid, activityNum = 100;
 
     boolean listed = false;
     Random rand = new Random();
-    String name;
+
     String[] farms;
     Farm[] FarmObjects;
     Fetcher Fetcher = new Fetcher();
-    static Seeder Seeder = new Seeder(); //seeder
+    static Seeder seeder = new Seeder();
     // types
     String[] types = { "plant", "fertilizer", "pesticides" };
     // then subtypes based on farm's farmables list
@@ -51,8 +51,8 @@ public class Farmer implements Runnable {
             }
         } else {
             retryActivity();
-//            createActivity(false);
         }
+
     }
 
     public void createActivity(boolean actSkipped) {// need id,date,action,type,unit,quantity,field,row,farmId,userId
@@ -60,16 +60,19 @@ public class Farmer implements Runnable {
         int farmID = Integer.parseInt(farms[rand.nextInt(farms.length)]) - 1;
 //        FarmObjects[farmID].getJob(userid);
         if(actSkipped) {
-            skippedActivity.add(FarmObjects[farmID].getJob(userid, actSkipped));
+            skippedActivity.add(FarmObjects[farmID].getJob(userid, true));
         }
-        else
-            FarmObjects[farmID].getJob(userid,actSkipped);
-        totalAct.incrementAndGet();
+        else {
+            FarmObjects[farmID].getJob(userid, false);
+            totalAct.incrementAndGet();
+        }
     }
     private void retryActivity(){
-        for (int i = 0; i < nSkipAct; i++) {
-            Seeder.seedActivity(skippedActivity.get(i));
+        for (int i = 0; i < skippedActivity.size(); i++) {
+            seeder.seedActivity(skippedActivity.get(i));
+            totalAct.incrementAndGet();
         }
+
     }
 
     private void interruptProbability(int percentage) {

@@ -6,7 +6,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Farm {
-    ExecutorService executorService;
     Lock lock = new ReentrantLock();
     Lock lock2 = new ReentrantLock();
     Random rand = new Random();
@@ -18,7 +17,7 @@ public class Farm {
     int[][] field;// field x row | each row store status of actions
 
     DB.Fetcher Fetcher = new Fetcher();
-    DB.Seeder Seeder = new Seeder();
+    Seeder seeder = new Seeder();
 
     public Farm(int farmid) {
         this.farmid = farmid;
@@ -70,7 +69,7 @@ public class Farm {
             lock2.unlock();
         }
     }
-    public String[] getJob(int userid, boolean actSkipped) {// later set to synchronized in concurrent
+    public String[] getJob(int userid, boolean actSkipped) {
         // get random field index
         int[] fieldRowStatus = getFieldRow();
         int tempField = fieldRowStatus[0];
@@ -107,12 +106,13 @@ public class Farm {
         else
             tempType = "none";
 
+
         if(actSkipped)
             return new String[] {tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
                 String.valueOf(tempRow), String.valueOf(farmid), String.valueOf(userid)};
         else {
             //push to database right away
-            Seeder.seedActivity(tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
+            seeder.seedActivity(tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
                     String.valueOf(tempRow), String.valueOf(farmid), String.valueOf(userid));//8 arguments
             return null;
         }

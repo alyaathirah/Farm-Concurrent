@@ -9,6 +9,7 @@ import java.util.concurrent.TimeUnit;
 import com.github.javafaker.Faker;
 
 public class Seeder {
+    private static Seeder seeder = new Seeder();
     private Random rand = new Random();
     private activity_counter counter = activity_counter.getInstance();
     private Connection Mconn;
@@ -22,6 +23,9 @@ public class Seeder {
             // need to have error handling here
             e.printStackTrace();
         }
+    }
+    public static Seeder getInstance(){
+        return seeder;
     }
 
     public void seederManager(int nPlant, int nFertilizer, int nPesticide, int nFarm, int nUser) {
@@ -206,7 +210,7 @@ public class Seeder {
             seedFarmable(farmid, "pesticide");
         }
     }
-    public void seedActivity(String[] str){
+    public void seedActivity(String[] str){ //special seed activity method for lost activities array
         seedActivity(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7]);
     }
     public void seedActivity(String action, String type, String unit, String quantity, String field, String row,
@@ -235,8 +239,8 @@ public class Seeder {
             Mconn.commit();
 
             //rollback on probability given: 2%
-            if (this.rand.nextInt(101) <= 8)
-                throw new SQLException("simulate rollback");
+//            if (this.rand.nextInt(101) <= 8)
+//                throw new SQLException("simulate rollback");
 
         } catch (SQLException ex) {
             // System.out.println("Seed table 'activities' failed");
