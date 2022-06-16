@@ -49,14 +49,14 @@ public class Database {
 
     //get connection
     protected static Connection getConnection(String url, String username, String password) throws SQLException {
-        try {
-            return DriverManager.getConnection(url, username, password);
-        } catch (SQLException e) {
-            System.out.println("Make sure to open xampp");
-            System.exit(1);
-            return null;
-        }
-        
+//        try {
+//            return DriverManager.getConnection(url, username, password);
+//        } catch (SQLException e) {
+//            System.out.println("Make sure to open xampp");
+//            System.exit(1);
+//            return null;
+//        }
+        return DriverManager.getConnection(url, username, password);
     }
 
     //get sql connnection

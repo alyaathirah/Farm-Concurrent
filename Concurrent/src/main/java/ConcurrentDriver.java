@@ -25,6 +25,8 @@ public class ConcurrentDriver {
 
         //create activities for each farmers
         int nFarmer = 100;
+
+
         Farm[] farms = new Farm[10];
         for(int i=0; i<10; i++){
             farms[i] = new Farm(i+1);
@@ -61,6 +63,7 @@ public class ConcurrentDriver {
             executorService.execute(sfarmer);
         }
         executorService.shutdown();
+
         try {
             executorService.awaitTermination(24L, TimeUnit.HOURS);
         } catch (InterruptedException e) {

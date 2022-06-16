@@ -1,4 +1,5 @@
 import DB.Fetcher;
+import DB.Seeder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +10,17 @@ public class Farmer implements Runnable {
     static List<Farmer> skipFarmer = new ArrayList<Farmer>();
     static AtomicInteger totalAct = new AtomicInteger();
     static AtomicInteger totalInterruptedAct = new AtomicInteger();
+
+    ArrayList<String[] > skippedActivity = new ArrayList<String[]>();
     int nSkipAct = 0, userid, activityNum = 100;
+
     boolean listed = false;
     Random rand = new Random();
     String name;
     String[] farms;
     Farm[] FarmObjects;
-    DB.Fetcher Fetcher = new Fetcher();
+    Fetcher Fetcher = new Fetcher();
+    static Seeder Seeder = new Seeder(); //seeder
     // types
     String[] types = { "plant", "fertilizer", "pesticides" };
     // then subtypes based on farm's farmables list
@@ -39,28 +44,36 @@ public class Farmer implements Runnable {
                     addToInterruptList();
                     totalInterruptedAct.incrementAndGet();
                     nSkipAct++;
+                    createActivity(true);
                     continue;
                 }
-                createActivity();
+                createActivity(false);
             }
         } else {
-            for (int i = 0; i < nSkipAct; i++) {
-                createActivity();
-            }
+            retryActivity();
+//            createActivity(false);
         }
     }
 
-    public void createActivity() {// need id,date,action,type,unit,quantity,field,row,farmId,userId
-
+    public void createActivity(boolean actSkipped) {// need id,date,action,type,unit,quantity,field,row,farmId,userId
         // Pick random farm
-        Farm tempFarm = FarmObjects[Integer.parseInt(farms[rand.nextInt(farms.length)]) - 1];
-            tempFarm.getJob(userid);
-            totalAct.incrementAndGet();
+        int farmID = Integer.parseInt(farms[rand.nextInt(farms.length)]) - 1;
+//        FarmObjects[farmID].getJob(userid);
+        if(actSkipped) {
+            skippedActivity.add(FarmObjects[farmID].getJob(userid, actSkipped));
+        }
+        else
+            FarmObjects[farmID].getJob(userid,actSkipped);
+        totalAct.incrementAndGet();
+    }
+    private void retryActivity(){
+        for (int i = 0; i < nSkipAct; i++) {
+            Seeder.seedActivity(skippedActivity.get(i));
+        }
     }
 
     private void interruptProbability(int percentage) {
         if (this.rand.nextInt(101) <= percentage) {
-            // System.out.println("Farmer "+userid+"\tActivity "+nSkipAct);
             Thread.currentThread().interrupt();
         }
     }
@@ -72,4 +85,5 @@ public class Farmer implements Runnable {
             this.listed = true;
         }
     }
+
 }

@@ -1,8 +1,14 @@
 import DB.Fetcher;
 import DB.Seeder;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Farm {
+    ExecutorService executorService;
+    Lock lock = new ReentrantLock();
+    Lock lock2 = new ReentrantLock();
     Random rand = new Random();
     int farmid;
     String[] actions = { "sowing", "pesticide", "fertilizing", "harvest", "sales" }; // status {0,1,2,3,4}
@@ -32,64 +38,83 @@ public class Farm {
         fertilizer = Fetcher.fetchFarmablesByFarm(farmid, "fertilizer");
         // fetch pesticides
         pesticides = Fetcher.fetchFarmablesByFarm(farmid, "pesticide");
-        // for(int i=0; i<plants.length; i++)
-        // System.out.println(plants[i]);
     }
-//    synchronized int[] getFieldRow(){
-//        // get random field index
-//        int tempField = rand.nextInt(plants.length);
-//        // get random row index
-//        int tempRow = rand.nextInt(5);
-//        // check status
-//        int tempStatus = field[tempField][tempRow];
-//        while (tempStatus == -1){
-//            if (tempStatus == -1)
-//                return new int[]{-1, -1};
-//            else {
-//                return new int[]{tempField, tempField};
-//            }
-//        }
-//        return new int[]{-1, -1};
-//
-//    }
-    synchronized void getJob(int userid) {// later set to synchronized in concurrent
-        // CONCURRENT: if status -1 meaning other users working on that row, so it will
-        // find other row or field or other farm to work on
-        // String id, String date, String action, String type, String unit, double
-        // quantity, int field, int row, String farmId, String userId
+    int[] getFieldRow(){
+        // if status -1 meaning other users working on that row, so it will find other row or field or other farm to work on
+        int tempField;
+        int tempRow;
+        int tempStatus = -1;
 
+        lock.lock();
+        try {
+            do{
+                tempField = rand.nextInt(plants.length);
+                tempRow = rand.nextInt(5);
+                tempStatus = field[tempField][tempRow];
+
+                if (tempStatus != -1) {
+                    field[tempField][tempRow] = -1; //change the row to -1 temporarily
+                    return new int[]{tempField, tempRow, tempStatus};
+                }
+            }while (tempStatus == -1);
+        } finally {
+            lock.unlock();
+        }
+        return new int[]{-1, -1, -1};
+    }
+    void returnRowStatus(int tempField,int tempRow,int newStatus){
+        lock2.lock();
+        try {
+            field[tempField][tempRow] = newStatus;
+        } finally {
+            lock2.unlock();
+        }
+    }
+    public String[] getJob(int userid, boolean actSkipped) {// later set to synchronized in concurrent
         // get random field index
-        int tempField = rand.nextInt(plants.length);
-        // get random row index
-        int tempRow = rand.nextInt(5);
-        // check status
-        int tempStatus = field[tempField][tempRow];
+        int[] fieldRowStatus = getFieldRow();
+        int tempField = fieldRowStatus[0];
+        int tempRow = fieldRowStatus[1];
+        int tempStatus = fieldRowStatus[2];
+
         // change status
         if (tempStatus >= 4)
-            tempStatus = 0; // set to zero after sales
+            tempStatus = 0;// set to zero after sales
         else {
             tempStatus++;
-            field[tempField][tempRow] = tempStatus;
         }
+        returnRowStatus(tempField,tempRow,tempStatus);
+
         String tempAction = actions[tempStatus];
         // generate random quantity and unit
         int tempQuantity = rand.nextInt(100);
-        String tempUnit = "kg";
+        String tempUnit="";
 
         // get type from field number | if new status pesticide/fertilizer
         // type=pesticide/fertilizer's brand
         String tempType = "";
-        if (tempStatus == 0 || tempStatus == 3 || tempStatus == 4) {// plant related
+        if (tempStatus == 0 || tempStatus == 3 || tempStatus == 4) {// plant name
             tempType = Fetcher.fetchPlantByID(plants[tempField]);
-        } else if (tempStatus == 1)
+            tempUnit = "kg";
+        } else if (tempStatus == 1) { //pesticide name
             tempType = Fetcher.fetchPesticideByID(pesticides[rand.nextInt(pesticides.length)]);
-        else if (tempStatus == 2)
+            tempUnit = "l";
+        }
+        else if (tempStatus == 2) {//fertilizer name
             tempType = Fetcher.fetchFertilizerByID(fertilizer[rand.nextInt(fertilizer.length)]);
+            tempUnit = "pack";
+        }
         else
             tempType = "none";
-        // push to database
-        Seeder.seedActivity(tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
-                String.valueOf(tempRow), String.valueOf(farmid), String.valueOf(userid));
 
+        if(actSkipped)
+            return new String[] {tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
+                String.valueOf(tempRow), String.valueOf(farmid), String.valueOf(userid)};
+        else {
+            //push to database right away
+            Seeder.seedActivity(tempAction, tempType, tempUnit, String.valueOf(tempQuantity), String.valueOf(tempField),
+                    String.valueOf(tempRow), String.valueOf(farmid), String.valueOf(userid));//8 arguments
+            return null;
+        }
     }
 }

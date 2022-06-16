@@ -13,6 +13,7 @@ public class Seeder {
     private activity_counter counter = activity_counter.getInstance();
     private Connection Mconn;
 
+    //seeder cant initialize twice
     public Seeder() {
         try {
             Mconn = Table.getDatabaseConnection();
@@ -205,7 +206,9 @@ public class Seeder {
             seedFarmable(farmid, "pesticide");
         }
     }
-
+    public void seedActivity(String[] str){
+        seedActivity(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7]);
+    }
     public void seedActivity(String action, String type, String unit, String quantity, String field, String row,
         String farmId, String userId) {
         // seed data into table 'activities'
