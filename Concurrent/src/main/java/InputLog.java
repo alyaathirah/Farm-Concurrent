@@ -2,12 +2,14 @@
 import DB.Table;
 
 import java.sql.*;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputLog {
 
     public void inputlog() {
         Scanner input = new Scanner(System.in);  // Create a Scanner object
+        try{
         System.out.println(" ");
         System.out.println("Which targets of activity log (input number 0 or 1 or 2 or 3 or 4 or 5) :");
         System.out.println(" 0 = Exit System \n 1 = Activity logs for a target farm \n 2 = Activity logs for a target farmer \n 3 = Activity logs for a target farm and plant / fertilizer / pesticide \n 4 = Activity logs for a target farm and plant / fertilizer / pesticide between date A and date B (inclusive) \n 5 = Summarized logs by plants, fertilizers and pesticides for a target farm and plant / fertilizer / pesticide between date A and date B (inclusive) for selected field and row number.");
@@ -32,10 +34,14 @@ public class InputLog {
         } else if (select == 0) {
             System.out.println("Thank You . Good Bye .");
         } else{
-            System.out.println("Wrong Input");
+            System.out.println("Wrong Input, Out of Choice");
             inputlog();
         }
         input.close();
+        }catch(InputMismatchException e){
+            System.out.println("Invalid input type");
+            inputlog();
+        }
     }
 
 
