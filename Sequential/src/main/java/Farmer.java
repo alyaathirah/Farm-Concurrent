@@ -9,7 +9,7 @@ public class Farmer{
     Farm[] FarmObjects;
 
     DB.Fetcher Fetcher = new Fetcher();
-    int activityNum = 100;
+    int activityNum = 1000;
     // types
     String[] types = { "plant", "fertilizer", "pesticides" };
     // then subtypes based on farm's farmables list
@@ -21,18 +21,14 @@ public class Farmer{
     }
 
     public void run() {
-        for (int i = 0; i < activityNum; i++) {// 100 activities
+        for (int i = 0; i < activityNum; i++) {
             createActivity();
         }
     }
 
-    public void createActivity() {// need id,date,action,type,unit,quantity,field,row,farmId,userId
+    public void createActivity() {
         // Pick random farm
         Farm tempFarm = FarmObjects[Integer.parseInt(farms[rand.nextInt(farms.length)]) - 1];
         tempFarm.getJob(userid);
-    }
-
-    public void disaster() {
-
     }
 }

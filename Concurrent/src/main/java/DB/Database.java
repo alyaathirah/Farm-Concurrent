@@ -22,14 +22,13 @@ public class Database {
 
     public void databaseManager() {
         if (checkDriver() == true) {
-            
+
             if (checkDatabaseExisted() == true) {
                 dropDatabase();
             }
             createDatabase();
         }
     }
-
 
     // check driver before any other function about database
     private boolean checkDriver() {
@@ -41,25 +40,18 @@ public class Database {
         } catch (ClassNotFoundException ex) {
             // System.out.println("Error: unable to load driver class!");
             // System.out.println(ex.getMessage());
-            
+
         }
 
         return result;
     }
 
-    //get connection
+    // get connection
     protected static Connection getConnection(String url, String username, String password) throws SQLException {
-//        try {
-//            return DriverManager.getConnection(url, username, password);
-//        } catch (SQLException e) {
-//            System.out.println("Make sure to open xampp");
-//            System.exit(1);
-//            return null;
-//        }
         return DriverManager.getConnection(url, username, password);
     }
 
-    //get sql connnection
+    // get sql connnection
     protected Connection getSQLConnection() throws SQLException {
         return getConnection(SQL_URL, USERNAME, PASSWORD);
     }
@@ -96,7 +88,7 @@ public class Database {
                     rs.close();
                 } catch (SQLException ex) {
                     ex.printStackTrace();
-                    
+
                 }
             }
             if (conn != null) {
@@ -113,7 +105,6 @@ public class Database {
     // create database function
     private boolean createDatabase() {
         boolean result = false;
-        // System.out.println("Creating database...");
         try (Connection conn = getSQLConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE DATABASE " + DB_NAME;

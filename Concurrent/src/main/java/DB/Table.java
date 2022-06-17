@@ -17,15 +17,12 @@ public class Table {
         createActivitiesTable();
     }
 
-    //
     public static Connection getDatabaseConnection() throws SQLException {
         return Database.getConnection(DB_URL, USERNAME, PASSWORD);
     }
 
     // create table "plants"
-    private boolean createPlantsTable() {
-        boolean result = false;
-        // System.out.println("Creating table 'plants'...");
+    private void createPlantsTable() {
         try (Connection conn = getDatabaseConnection();
                 Statement stmt = conn.createStatement();) {
             String sql = "CREATE TABLE plants " +
@@ -34,13 +31,12 @@ public class Table {
                     " unitType VARCHAR(255) not NULL, " +
                     " PRIMARY KEY ( id ))";
             stmt.executeUpdate(sql);
-            // System.out.println("Created table 'plants' successfully");
+            // Create table success
             conn.close();
         } catch (SQLException e) {
             System.out.println("Created table 'plants' failed");
             e.printStackTrace();
         }
-        return result;
     }
 
     // create table "fertilizers"

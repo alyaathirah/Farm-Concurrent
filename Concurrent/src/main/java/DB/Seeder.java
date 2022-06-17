@@ -14,17 +14,19 @@ public class Seeder {
     private activity_counter counter = activity_counter.getInstance();
     private Connection Mconn;
 
-    //seeder cant initialize twice
+    // seeder cant initialize twice
     public Seeder() {
         try {
             Mconn = Table.getDatabaseConnection();
             Mconn.setAutoCommit(false);
+
         } catch (SQLException e) {
             // need to have error handling here
             e.printStackTrace();
         }
     }
-    public static Seeder getInstance(){
+
+    public static Seeder getInstance() {
         return seeder;
     }
 
@@ -55,9 +57,8 @@ public class Seeder {
         }
     }
 
-    private boolean seedFarms(int n) {
+    private void seedFarms(int n) {
         // seed data into table 'farms'
-        boolean result = false;
         Faker faker = new Faker();
         String SQL = "INSERT INTO farms(id,name,address) " + "VALUES(?,?,?)";
 
@@ -85,7 +86,6 @@ public class Seeder {
         } finally {
             // can use here to close resources
         }
-        return result;
     }
 
     private boolean seedFertilizers(int n) {
@@ -210,11 +210,14 @@ public class Seeder {
             seedFarmable(farmid, "pesticide");
         }
     }
-    public void seedActivity(String[] str){ //special seed activity method for lost activities array
-        seedActivity(str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7]);
+
+    public void seedActivity(String[] str) { // special seed activity method for lost activities array
+        seedActivity(Mconn, str[0], str[1], str[2], str[3], str[4], str[5], str[6], str[7]);
     }
-    public void seedActivity(String action, String type, String unit, String quantity, String field, String row,
-        String farmId, String userId) {
+
+    public void seedActivity(Connection conn, String action, String type, String unit, String quantity, String field,
+            String row,
+            String farmId, String userId) {
         // seed data into table 'activities'
         // Date date = new Date(System.currentTimeMillis());
         Faker faker = new Faker();
@@ -222,8 +225,7 @@ public class Seeder {
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         String SQL = "INSERT INTO activities(id, date, action, type, unit, quantity, field, row, farm_id, user_id) "
                 + "VALUES(?,?,?,?,?,?,?,?,?,?)";
-
-        try (PreparedStatement pstmt = Mconn.prepareStatement(SQL)) {
+        try (PreparedStatement pstmt = conn.prepareStatement(SQL)) {
 
             pstmt.setString(1, String.valueOf(counter.getCount()));
             pstmt.setString(2, formatter.format(date));
@@ -236,11 +238,11 @@ public class Seeder {
             pstmt.setString(9, farmId);
             pstmt.setString(10, userId);
             pstmt.execute();
-            Mconn.commit();
+            conn.commit();
 
-            //rollback on probability given: 2%
-//            if (this.rand.nextInt(101) <= 8)
-//                throw new SQLException("simulate rollback");
+            // rollback on probability given: 2%
+            if (this.rand.nextInt(101) <= 8)
+                throw new SQLException("simulate rollback");
 
         } catch (SQLException ex) {
             // System.out.println("Seed table 'activities' failed");
